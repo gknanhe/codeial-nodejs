@@ -10,4 +10,12 @@ console.log('router loaded');
 router.get('/',homeController.home);
 
 
+//anather controller for user
+//if url is /user then go to this file
+router.use('/users', require('./users'));
+
+/* general syntax*/
+//for any further routes, access from here
+//router.use('/routerName', require('./routerFile'));
+
 module.exports = router;
