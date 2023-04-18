@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>
+            <%= title %>
+        </title>
+        <link rel="stylesheet" href="/css/layout.css">
+        <!-- Add link for css -->
+        <%- style -%>
+
+    </head>
+    <body>
+        <!-- including header and footer from another file -->
+        <%- include('_header'); -%>
+
+        <!-- here body is a variable part
+        what needs to be shown depends which file is called
+        rest layout will same for every page -->
+        <%- body -%>
+
+        <%- include('_footer'); -%>
+
+
+
+        <!-- Add Script  -->
+        <%- script -%>
+    </body>
+</html>
+
+
