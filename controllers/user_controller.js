@@ -16,6 +16,12 @@ module.exports.profile = function (req, res) {
 
 //render sing up page
 module.exports.singUp = function (req, res) {
+
+    //if already signed in cant go to sign in again
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
     return res.render('user_sign_up', {
         title: "Codeial | Sing Up",
     });
@@ -23,6 +29,13 @@ module.exports.singUp = function (req, res) {
 
 //render sign in page
 module.exports.signIn = function (req, res) {
+
+    //if already signed up cant go to sign in again
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
+
+
     return res.render('user_sign_in', {
         title: "Codeial | Sing In",
     });
@@ -62,7 +75,18 @@ module.exports.create = async function (req, res) {
 
 }
 
-//sign in and creat a session for user
+//sign in and creat a session for user using expess-sessio n and PASSPORT.JS
 module.exports.createSession = function (req, res) {
-    //To do later
+    return res.redirect('/')
+}
+
+
+module.exports.destroySession = function(req, res){
+   
+   //function from passport 
+    req.logout( function(err) {
+    if(err){ return next(err);}
+   } ); 
+    
+    return res.redirect('/');
 }

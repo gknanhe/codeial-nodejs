@@ -5,9 +5,16 @@ const cookieParser = require('cookie-parser');
 const port = 8000;
 
 const db = require('./config/mongoose');
-const { urlencoded } = require('express');
+// const { urlencoded } = require('express');
 //to read through req use urlEncoder
 app.use(express.urlencoded());
+
+//used for session cookie
+const session = require('express-session');
+const passport = require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+const MongoStore = require('connect-mongo'); // lib to store session info
+
 
 //use cookie parseer
 app.use(cookieParser()); 
@@ -22,16 +29,49 @@ app.set('layout extractScripts',true);
 
 
 
-//use express router using middleware
 
-//any request use this routes
-app.use('/',require('./routes'));
 
 //set view engine to ejs
 app.set('view engine', 'ejs');
 
 //set views to views folder
 app.set('views', './views');
+
+
+//set up middleware for cookie encryption
+// mongo store is used to store the session cookie in the db
+app.use(session({
+    name: 'codeial' ,  //name of cookie
+    secret: 'blahsomething',   // encryption done with this words
+    saveUninitialized: false,
+    resave: false,
+    //session time 
+    cookie: {
+        maxAge: (1000 * 60 * 100)  //in ms
+    },
+
+    store:  MongoStore.create({
+            mongoUrl: 'mongodb://localhost/codeial_developement', 
+            autoRemove: 'disabled'
+        })
+}))
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser)
+
+
+
+//use express router using middleware
+
+//any request use this routes
+app.use('/',require('./routes'));
+
+
+
+
 
 app.listen(port, function(err){
     if(err){
