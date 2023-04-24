@@ -1,5 +1,4 @@
 module.exports.home = function (req, res){
-
     //reading cookie
     console.log(req.cookies);
     res.cookie('user_id', 33);

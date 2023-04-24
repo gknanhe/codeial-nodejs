@@ -14,6 +14,10 @@ router.get('/',homeController.home);
 //if url is /user then go to this file
 router.use('/users', require('./users'));
 
+
+//router for post
+router.use('/posts', require('./posts'));
+
 /* general syntax*/
 //for any further routes, access from here
 //router.use('/routerName', require('./routerFile'));
