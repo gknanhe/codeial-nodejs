@@ -6,15 +6,26 @@ const port = 8000;
 
 const db = require('./config/mongoose');
 // const { urlencoded } = require('express');
-//to read through req use urlEncoder
-app.use(express.urlencoded());
 
 //used for session cookie
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo'); // lib to store session info
+//scss middleware to convert scss into css
+const sassMiddleware = require('node-sass-middleware');
 
+
+app.use(sassMiddleware({
+    src: './assets/scss',   //src to look for scss files
+    dest: './assets/css',  //where to store converted files
+    debug: true,
+    outputStyle: 'expanded' ,  //css will be extended
+    prefix: '/css'   //where to look for css files
+}))
+
+//to read through req use urlEncoder
+app.use(express.urlencoded());
 
 //use cookie parseer
 app.use(cookieParser()); 

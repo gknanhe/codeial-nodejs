@@ -4,6 +4,8 @@
             <%= title %>
         </title>
         <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/footer.css">
         <!-- Add link for css -->
         <%- style -%>
 
@@ -15,7 +17,10 @@
         <!-- here body is a variable part
         what needs to be shown depends which file is called
         rest layout will same for every page -->
-        <%- body -%>
+        <main id="layout-main">
+            <%- body %>
+
+        </main>
 
         <%- include('_footer'); -%>
 
