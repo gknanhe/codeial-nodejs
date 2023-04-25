@@ -25,6 +25,22 @@
                 <input type="submit" value="Post">
             </form>
         </section>
+
+
+            <div id="post-list-container">
+                <ul>
+                    <% for( post of posts ) { %>
+                        <p>
+                             <li>
+                                <%= post.content %>
+                             <br>
+                                <%= post.user.name %>
+                            </li> 
+                        </p>
+
+                    <% } %>
+                </ul>
+            </div>
         <!-- for js  -->
         <!-- <script src="./css/js"></script> -->
         <!-- <%- include('_footer'); -%>
