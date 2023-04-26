@@ -18,6 +18,9 @@ router.use('/users', require('./users'));
 //router for post
 router.use('/posts', require('./posts'));
 
+//router for comments
+router.use('/comments', require('./comments'));
+
 /* general syntax*/
 //for any further routes, access from here
 //router.use('/routerName', require('./routerFile'));

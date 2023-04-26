@@ -1,7 +1,6 @@
 const Post = require('../models/post');
 
 module.exports.create = async function(req, res){
-
    
         try {
             let newPost = await Post.create({
