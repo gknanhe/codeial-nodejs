@@ -4,13 +4,13 @@ const Post = require('../models/post');
 
 
 module.exports.create = async function (req, res) {
-    console.log(req.body.post, 'idpost')
+    // console.log(req.body.post, 'idpost')
     try {
         let post = await Post.findById(req.body.post);
-        console.log(post, 'post');
+        // console.log(post, 'post');
 
         if (post) {
-            console.log('inside if')
+            // console.log('inside if')
             try {
                 let comment = await Comment.create({
                     content: req.body.content,
@@ -20,7 +20,7 @@ module.exports.create = async function (req, res) {
 
                 // console.log(comment,'comment')
                 post.comments.push(comment);
-                console.log('post value after pushing',post)
+                // console.log('post value after pushing',post)
 
                 try {
                     await post.save();
