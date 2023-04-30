@@ -7,9 +7,10 @@ const User = require('../models/user');
 
 //authentication using passport
 passport.use(new LocalStrategy({
-    usernameField: 'email'
+    usernameField: 'email',
+    passReqToCallback: true    //alow to pass 1st arg as req
 },
-    async function (email, password, done) {
+    async function (req, email, password, done) {
         //find a user and establish the identity
         try {
             // console.log('email', email, 'password', password );
@@ -18,14 +19,16 @@ passport.use(new LocalStrategy({
 
 
             if (!user || user.password != password) {
-                console.log('Invalid Username / Password');
+                
+                req.flash('error','Invalid Username / Password');
+
                 return done(null, false);
             }
 
             return done(null, user);
 
         } catch (err) {
-            console.log('Error in finding user --> passport');
+            req.flash('error',err);
             return done(err);
         }
     }
@@ -58,9 +61,9 @@ passport.deserializeUser(async function (id, done) {
 // middleware function to check if user loggedin and data saved in localss
 
 // check if the user is authenticated 
-passport.checkAuthentication = function(req, res, next){
+passport.checkAuthentication = function (req, res, next) {
     // if user is signed in, then pass on the req to next function (controllers action)
-    if(req.isAuthenticated()){
+    if (req.isAuthenticated()) {
         return next();
     }
 
@@ -69,8 +72,8 @@ passport.checkAuthentication = function(req, res, next){
 }
 
 
-passport.setAuthenticatedUser = function(req, res, next){
-    if(req.isAuthenticated()){
+passport.setAuthenticatedUser = function (req, res, next) {
+    if (req.isAuthenticated()) {
         // req.user contains the current signed in user from the session coookie and we are just sending to locals for the views
         // console.log(req.user,'req user')
         res.locals.user = req.user;

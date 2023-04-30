@@ -2,3 +2,21 @@ body{
     background: rgb(219, 236, 253);
     height: 100%;
 }
+
+
+#home-container{
+    display: flex;
+    height: 100%;
+
+    #feed-post{
+        width: 70%;
+        padding: 10px;
+    }
+
+    #user-friends{
+        width: 30%;
+        border-left: 1px solid lightgray;
+        padding-left: 10px;
+        
+    }
+}

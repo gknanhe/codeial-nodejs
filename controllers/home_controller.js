@@ -1,5 +1,9 @@
 
 const Post = require('../models/post');
+const User = require('../models/user');
+
+
+
 module.exports.home = async function (req, res){
     //reading cookie
     // console.log(req.cookies);
@@ -26,24 +30,13 @@ module.exports.home = async function (req, res){
         }
     );
     
-        // console.log(posts)
-        // for(let post of posts){
-            
-        //     // console.log(post.comments)
-        //     if (Array.isArray(post.comments)) {
-        //         console.log(post.comment)
-        //         for(comment of post.comments){
-        //             console.log(comment.user.name, comment.content)
-        //         }
-        //     }
-            
-        //     console.log('completed')
-        // }
+        const users = await User.find();
         
 
         return res.render('home', {
             title : 'Codeal | Home',
-            posts: posts
+            posts: posts,
+            all_users: users
         })
     } catch (error) {
         console.log('error in getting post ',error)

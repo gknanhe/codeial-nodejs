@@ -10,7 +10,7 @@ const userController = require('../controllers/user_controller');
 
 //user want o go to profile then use this routes
 //make profile accessible on if signed in
-router.get('/profile', passport.checkAuthentication, userController.profile );
+router.get('/profile/:id', passport.checkAuthentication, userController.profile );
 
 router.get('/sign-in', userController.signIn);
 router.get('/sign-up', userController.singUp);

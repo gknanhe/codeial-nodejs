@@ -24,23 +24,23 @@ module.exports.create = async function (req, res) {
 
                 try {
                     await post.save();
-                    console.log('Comment added to post!');
+                    req.flash('success', "Comment Added" );
                     return res.redirect('back');
                 } catch (err) {
-                    console.log('Error saving post after comment', err);
+                    req.flash('error', err );
                     return res.redirect('back');
                 }
                 
                 
 
             } catch (error) {
-                console.log('error in creating comment', error);
+                req.flash('error', error );
             }
         }else{
-            console.log('Could not find post with id', req.body.post)
+            req.flash('error', error );
         }
     } catch (error) {
-        console.log('error in finding  post');
+        req.flash('error', error );
     }
 }
 
@@ -58,13 +58,13 @@ module.exports.destroy = async function(req, res){
             await comment.deleteOne();
 
             await Post.findByIdAndUpdate( postId, { $pull: { comments: req.params.id }});
-            console.log(' comment deleted');
+            req.flash('success', 'Comment deleted' );
 
             return res.redirect('back')
 
         }
     } catch (error) {
-        console.log('error in finding comment');
+        req.flash('error', error );
         return res.redirect('back')
 
     }

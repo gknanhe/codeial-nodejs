@@ -1,53 +1,57 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 
-module.exports.create = async function(req, res){
-   
-        try {
-            let newPost = await Post.create({
-                content: req.body.content,
-                user: req.user._id
-            })
-            // console.log(newPost, "newPost");
+module.exports.create = async function (req, res) {
 
-            return res.redirect('back');
-        } catch (err) {
-            console.log("error in creating Post");
-        }
-   
+    try {
+        await Post.create({
+            content: req.body.content,
+            user: req.user._id
+        })
+        // console.log(newPost, "newPost");
+        req.flash('success', "Post published" );
+
+        return res.redirect('back');
+    } catch (err) {
+        req.flash('error', err );
+        return res.redirect('back');
+
+    }
+
 
 }
 
 
 //delete post
 
-module.exports.destroy = async function(req, res){
+module.exports.destroy = async function (req, res) {
     console.log('params ', req.params);
-   const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id);
     try {
         //_id is converted in to string id to compare by mongoose
-        if (post.user == req.user.id ){
+        if (post.user == req.user.id) {
             await post.deleteOne();
-
+            //although no need of nested tryCatch bcoz if err occurs next part wont execute
             try {
-                await Comment.deleteMany({post: req.params.id});
-                console.log("Data deleted"); // Success
+                await Comment.deleteMany({ post: req.params.id });
+                req.flash('success', "Post deleted" );
                 return res.redirect('back')
 
             } catch (error) {
-                console.log('error in delete');
+                req.flash('error', err );
                 return res.redirect('back')
 
             }
-          
-          
-        }else{
-            console.log('user not same');
+
+
+        } else {
+            req.flash('error', "Can't delete" );
             return res.redirect('back');
 
         }
     } catch (error) {
-        console.log('error in deleting post ')
+        req.flash('error', "Can't delete" );
+        return res.redirect('back');
     }
-   
+
 }

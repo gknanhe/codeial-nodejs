@@ -4,11 +4,12 @@ const { render } = require("ejs")
 //export model 
 const User = require('../models/user');
 
-module.exports.profile = function (req, res) {
+module.exports.profile = async function (req, res) {
     // return res.end('<h1>User Profile</h1>');
-
+    const user = await User.findById(req.params.id);
     return res.render('profile', {
-        title: 'Profile'
+        title: 'Profile',
+        profile_user: user
     })
 
 }
@@ -45,6 +46,9 @@ module.exports.signIn = function (req, res) {
 module.exports.create = async function (req, res) {
     //check if password and confirm password is same
     if (req.body.password !== req.body.confirm_password) {
+
+        req.flash('error', 'Passwords Not Same!');
+
         return res.redirect('back');
 
     }
@@ -56,14 +60,19 @@ module.exports.create = async function (req, res) {
             try {
                 let newUser = await User.create(req.body)
                 console.log(newUser, "*****");
+                req.flash('success', 'User created successfully');
 
                 return res.redirect('/users/sign-in');
             } catch (err) {
-                console.log("error in creating user");
+                req.flash('error', err );
+                return res.redirect('back');
+
             }
             
         }
         else{
+            req.flash('error', "User Already Exist" );
+
             return res.redirect('back');     
         }
     }
@@ -77,16 +86,20 @@ module.exports.create = async function (req, res) {
 
 //sign in and creat a session for user using expess-sessio n and PASSPORT.JS
 module.exports.createSession = function (req, res) {
+    //set flash 
+    req.flash('success', 'Logged in Successfully');
     return res.redirect('/')
 }
 
 
 module.exports.destroySession = function(req, res){
-   
+
    //function from passport 
     req.logout( function(err) {
     if(err){ return next(err);}
    } ); 
-    
+
+   req.flash('success', 'You have Logged Out!');
+
     return res.redirect('/');
 }
