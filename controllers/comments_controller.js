@@ -11,7 +11,7 @@ module.exports.create = async function (req, res) {
 
         if (post) {
             // console.log('inside if')
-            try {
+            
                 let comment = await Comment.create({
                     content: req.body.content,
                     post: req.body.post,
@@ -19,28 +19,48 @@ module.exports.create = async function (req, res) {
                 });
 
                 // console.log(comment,'comment')
-                post.comments.push(comment);
+
+                
+
+
+                // post.comments.push(comment);
+                post.comments.unshift(comment);  //unshift add at start of array
+
                 // console.log('post value after pushing',post)
+               
 
-                try {
-                    await post.save();
-                    req.flash('success', "Comment Added" );
+
+
+
+                
+                await post.save();
+
+                    if (req.xhr){
+                        // Similar for comments to fetch the user's id!
+                        comment = await comment.populate('user', 'name');
+            
+                        return res.status(200).json({
+                            data: {
+                                comment: comment
+                            },
+                            message: "Comment created!"
+                        });
+                    }
+
+
+                    req.flash('success', "CommentAdded" );
                     return res.redirect('back');
-                } catch (err) {
-                    req.flash('error', err );
-                    return res.redirect('back');
-                }
                 
                 
+                
 
-            } catch (error) {
-                req.flash('error', error );
-            }
-        }else{
-            req.flash('error', error );
+            // } catch (error) {
+            //     req.flash('error', error );
+            // }
         }
     } catch (error) {
         req.flash('error', error );
+        return;
     }
 }
 
@@ -49,16 +69,29 @@ module.exports.create = async function (req, res) {
 module.exports.destroy = async function(req, res){
     try {
         
-        const comment =  await Comment.findById(req.params.id);
+        let comment =  await Comment.findById(req.params.id);
 
         if(comment.user == req.user.id){
 
             let postId = comment.post;
 
-            await comment.deleteOne();
+           let deleteComm = await comment.deleteOne();
+           console.log(deleteComm,'comm delete')
 
-            await Post.findByIdAndUpdate( postId, { $pull: { comments: req.params.id }});
-            req.flash('success', 'Comment deleted' );
+           let post =  await Post.findByIdAndUpdate( postId, { $pull: { comments: req.params.id }});
+
+            // send the comment id which was deleted back to the views
+            if (req.xhr){
+                return res.status(200).json({
+                    data: {
+                        comment_id: req.params.id
+                    },
+                    message: "Comment deleted"
+                });
+            }
+
+
+            req.flash('success', 'Commentdeleted' );
 
             return res.redirect('back')
 

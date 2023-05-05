@@ -35,6 +35,9 @@ app.use(cookieParser());
 // app.use(express.static('./assets'));
         // OR
 app.use(express.static(__dirname + '/assets'));//if used this then include / in css link at start
+
+//route for avatar path
+app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(expressLayouts);
 // extract styles and script from sub pages
 app.set('layout extractStyles',true);
@@ -49,6 +52,8 @@ app.set('view engine', 'ejs');
 
 //set views to views folder
 app.set('views', './views');
+
+
 
 
 //set up middleware for cookie encryption

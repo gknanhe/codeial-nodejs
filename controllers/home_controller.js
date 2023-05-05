@@ -4,6 +4,11 @@ const User = require('../models/user');
 
 
 
+const Comment = require('../models/comment');
+const { db } = require('../models/post');
+ 
+
+
 module.exports.home = async function (req, res){
     //reading cookie
     // console.log(req.cookies);
@@ -19,18 +24,42 @@ module.exports.home = async function (req, res){
     //     })
 
     try {
-        let  posts = await Post.find()
+        let  posts = await Post.find({})
+        .sort('-createdAt')
         .populate('user')
         .populate({
             path: 'comments',
             populate: {
                         path:'user',
                         // model:'User'
+                        
                     }
         }
+        
     );
+
+
+
+   
+
+
+
+
+// for(post of posts){
+//     let comme = post.comments;
+//     comme.sort('-1');
+//     console.log(comme,'comme')
+// }
+
     
-        const users = await User.find();
+
+        // let comm = await Comment.find({})
+        // .sort('-createdAt');
+
+        // console.log('comm model',comm)
+    
+
+        let users = await User.find({});
         
 
         return res.render('home', {
