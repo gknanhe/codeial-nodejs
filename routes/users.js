@@ -31,4 +31,13 @@ redirect to sign in pahe and if done smoothly then go to next userController.cre
 //sign out 
 router.get('/sign-out', userController.destroySession);
 
+
+
+//for google Auth
+router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));   //will send to google by requestig for profile and email as mentioned in scope
+//after auth from google
+router.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/users/sign-in' }), userController.createSession);
+
+
+
 module.exports = router;
