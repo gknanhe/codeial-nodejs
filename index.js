@@ -7,10 +7,17 @@ const port = 8000;
 const db = require('./config/mongoose');
 // const { urlencoded } = require('express');
 
+//body parsere
+const bodyParser=require("body-parser");
+ app.use(bodyParser.json());
+ app.use(express.urlencoded({ extnded: true }));
+
+
 //used for session cookie
 const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
+const passportJwt = require('./config/passport-jwt-strategy');
 const MongoStore = require('connect-mongo'); // lib to store session info
 //scss middleware to convert scss into css
 const sassMiddleware = require('node-sass-middleware');

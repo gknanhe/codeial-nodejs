@@ -1,5 +1,4 @@
 const express = require('express');
-
 const router = express.Router();
 
 //call controller
@@ -24,5 +23,12 @@ router.use('/comments', require('./comments'));
 /* general syntax*/
 //for any further routes, access from here
 //router.use('/routerName', require('./routerFile'));
+
+
+// for API
+router.use('/api', require('./api'));
+
+
+
 
 module.exports = router;

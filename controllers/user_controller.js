@@ -106,7 +106,9 @@ module.exports.create = async function (req, res) {
     }
     try {
         //check if user exist
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({email: req.body.email});
+
+
         //if not exist creat it
         if (!user) {
             try {
