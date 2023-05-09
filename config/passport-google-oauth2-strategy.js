@@ -14,7 +14,7 @@ passport.use(new googleStrategy({
         try {
             //find a user
             const user = await User.findOne({ email: profile.emails[0].value });
-            console.log(profile,'****profile');
+            // console.log(profile,'****profile');
 
             if(user){
                // if found, set this user as req.user

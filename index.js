@@ -4,6 +4,10 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const port = 8000;
 
+
+// env 
+require("dotenv").config();
+
 const db = require('./config/mongoose');
 // const { urlencoded } = require('express');
 
