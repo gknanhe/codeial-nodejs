@@ -3,14 +3,9 @@ const ejs = require('ejs');
 const path = require('path');
 const { getMaxListeners } = require('process');
 require('dotenv').config();
-const smtpTransport = require('nodemailer-smtp-transport')
+const smtpTransport = require('nodemailer-smtp-transport')  //MOST IMP
 
-const email = process.env.EMAIL;
-const pass = process.env.EMAIL_PASS;
-const cliId = process.env.OAUTH_CLIENTID;
-const secret = process.env.OAUTH_CLIENT_SECRET;
-const rtoken = process.env.OAUTH_REFRESH_TOKEN;
-console.log(email,pass,cliId,secret,rtoken)
+
 
 const transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
@@ -19,11 +14,15 @@ const transporter = nodemailer.createTransport(smtpTransport({
     secure: false,
     
     auth: {
+            /*for this code taken help from freecode camp
+        https://www.freecodecamp.org/news/use-nodemailer-to-send-emails-from-your-node-js-server/
+            */
+
         user:  'iam.nanhe33@gmail.com', //process.env.EMAIL,//'iam.nanhe33@gmail.com',   //gmail
         pass: process.env.EMAIL_PASS,//'iiuotnmpvyernogu'  //genrated pass //pass of gmail
-        clientId: process.env.OAUTH_CLIENTID,
+        clientId: process.env.OAUTH_CLIENTID,   
         clientSecret: process.env.OAUTH_CLIENT_SECRET,
-        refreshToken: process.env.OAUTH_REFRESH_TOKEN
+        refreshToken: process.env.OAUTH_REFRESH_TOKEN    /** generate it from: https://developers.google.com/oauthplayground */
     
     
     },
