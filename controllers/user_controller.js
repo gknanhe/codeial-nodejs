@@ -1,11 +1,16 @@
 const { render } = require("ejs")
-
+const mongoose = require('mongoose');
 
 //export model 
 const User = require('../models/user');
 
 const fs = require('fs');
 const path = require('path');
+
+
+const resetEmailWorker = require('../workers/resetPassword_mailer');
+const queue = require('../config/kue');
+const Token = require('../models/token');
 
 module.exports.profile = async function (req, res) {
     // return res.end('<h1>User Profile</h1>');
@@ -156,4 +161,106 @@ module.exports.destroySession = function (req, res) {
     req.flash('success', 'You have Logged Out!');
 
     return res.redirect('/');
+}
+
+
+
+//reset password
+
+
+//render the forgot password page for user
+module.exports.forgotPassword = function(req,res){
+    res.render('forgot_password',{
+        title:'Reset Password'
+    });
+}
+
+//create token and send link to email for password change
+module.exports.resetPassword =async function(req,res){
+   // console.log(req.body);
+   let user = await User.findOne({email:req.body.email});
+   //console.log(user);
+    let token =await Token.create({isValid:true,user:user})
+   let job = queue.create('reset',token).save(function(err){
+    if(err){
+        console.log('error in creating queue',err);
+        return;
+    }
+    console.log('enqueued',job.id);
+    
+});
+res.render('reset_email_sent',{
+    title:'Mail Inbox'
+});   
+}
+
+//render the update password page
+module.exports.changePassword = async function(req,res){
+  //  console.log("ainside cahnge password in user controller",req.params.id);
+   let token = await Token.findById(req.params.id);
+   if(!token || token.isValid == false){
+    res.render('user_sign_in',{
+        title:'signIn'
+    })
+    return;
+   } 
+   else{
+    console.log(typeof (req.params.id));
+    // const userId =  new mongoose.Types.ObjectId(req.params.id);
+    // console.log(typeof (userId));
+    
+    let token = await Token.findByIdAndUpdate(req.params.id,{isValid:true});
+    console.log(token, "token");
+    // let user = await User.findById(token.user);
+    // console.log(user,'usercheck');
+    res.render('changePassword',{
+        title:'changePassword',
+        user: token.user,
+    })
+   }
+   
+}
+
+
+module.exports.updatePassword = async function(req,res){
+    console.log(req.params.id);
+    console.log(req.body);
+    const userId =  new mongoose.Types.ObjectId(req.params.id);
+
+    // let user = await User.findById(userId);
+
+    const user = await User.findOne({ _id: userId });
+
+    console.log(user)
+try {
+    if(req.body.password != req.body.confirm_password){
+        console.log("password not matching");
+        //console.log(req.body.password, req.body.confirm_password);
+       return  res.redirect('back');
+    }
+    // console.log(req.params.id,'params')
+    const user = await User.findOne({_id : req.body.id});
+    if(!user){
+        console.log(user)
+        res.render('user_sign_up',{
+            title:'signUp'
+        })
+        return;
+    }
+    else{
+        console.log(user);
+         
+    await User.findByIdAndUpdate(user.id,{password:req.body.password});
+        console.log("changedddd******");
+        console.log(user.password);
+        res.render('user_sign_in',{
+            title:'SignIn'
+        })
+    }
+} catch (error) {
+    console.log('error ',error);
+    return;
+}
+    
+
 }

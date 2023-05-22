@@ -16,6 +16,11 @@ router.post('/update/:id', passport.checkAuthentication, userController.update);
 router.get('/sign-in', userController.signIn);
 router.get('/sign-up', userController.singUp);
 
+//forget password
+router.get('/forgot-password',userController.forgotPassword);
+router.get('/change-password/:id',userController.changePassword)
+router.post('/reset-password',userController.resetPassword);
+router.post('/updatePassword/:id',userController.updatePassword);
 
 
 router.post('/create', userController.create)
