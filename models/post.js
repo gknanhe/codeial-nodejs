@@ -17,6 +17,13 @@ const postSchema = new mongoose.Schema({
         },
         // { default: true }  //if  not work then uncomment
             
+    ],
+
+    likes: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Like'
+        }
     ]
 
     

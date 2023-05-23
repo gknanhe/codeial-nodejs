@@ -1,6 +1,6 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
-
+const Like = require('../models/like')
 module.exports.create = async function (req, res) {
 
     try {
@@ -50,11 +50,17 @@ module.exports.destroy = async function (req, res) {
         let post = await Post.findById(req.params.id);
         //_id is converted in to string id to compare by mongoose
         if (post.user == req.user.id) {
+
+            // CHANGE :: delete the associated likes for the post and all its comments' likes too
+            await Like.deleteMany({likeable: post, onModel: 'Post'});
+            await Like.deleteMany({_id: {$in: post.comments}});
+
+
             await post.deleteOne();
             //although no need of nested tryCatch bcoz if err occurs next part wont execute
             // try {
                 await Comment.deleteMany({ post: req.params.id });
-
+            console.log(req.params.id,'paramsid post')
                 if (req.xhr){
                     return res.status(200).json({
                         data: {

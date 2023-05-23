@@ -18,6 +18,9 @@
                     //call the create comment class
                     new PostComments(data.data.post._id);
 
+                    //CHANGE :: enable the functionality of the toggle like button on the post
+                    new ToggleLike($(' .toggle-like-button', newPost));
+
                     //for flash notification
                     new Noty({
                         theme: 'relax',
@@ -49,7 +52,7 @@
     let newPostDom = function (post) {
 
         console.log(post.user);
-
+         // CHANGE :: show the count of zero likes on this post
         return $(`<li id="post-${post._id}">
         <p>
            <small>
@@ -60,6 +63,16 @@
         <small>
         ${post.user.name}
         </small>
+
+        <br>
+             <small>
+                            
+                <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+                    0 Likes
+                </a>
+                            
+             </small>
+
         </p> 
    
     <div class="post-comments">
@@ -90,6 +103,7 @@
                 type: 'get',
                 url: $(deleteLink).prop('href'),
                 success: function (data) {
+                    console.log(data.data)
                     $(`#post-${data.data.post_id}`).remove();   //will remove class
                     
                     new Noty({

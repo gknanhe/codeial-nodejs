@@ -33,10 +33,12 @@ module.exports.home = async function (req, res){
                         path:'user',
                         // model:'User'
                         
-                    }
-        }
-        
-    );
+                    },
+            populate: {
+                        path: 'likes'
+            }
+        }).populate('comments')
+        .populate('likes');
 
 
 
