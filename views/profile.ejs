@@ -36,6 +36,24 @@
     
         <% } %>
 
+
+        <br>
+        <% if(user.id != profile_user.id) {%>
+                <% if(friends==false) {%>
+            <p id="friend-style">
+                <a href="/friends/toggle/?id=<%=profile_user.id%>" id="toggle-friend">add friend</a>
+            </p>
+            <%}%>
+            <% if(friends==true) {%>
+                <p id="friend-style">
+                    <a href="/friends/toggle/?id=<%=profile_user.id%>" id="toggle-friend">remove friend</a>
+                </p>
+                <%}%>
+            <%}%>
+            <script src="/js/toggle_friend.js"></script> 
+        
+
+
         <!-- <%- include('_footer'); -%>
     </body>
 </html> -->

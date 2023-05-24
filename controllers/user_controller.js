@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 //export model 
 const User = require('../models/user');
-
+const  Friendship = require('../models/friendship');
 const fs = require('fs');
 const path = require('path');
 
@@ -13,12 +13,28 @@ const queue = require('../config/kue');
 const Token = require('../models/token');
 
 module.exports.profile = async function (req, res) {
-    // return res.end('<h1>User Profile</h1>');
+    try {
+        
+        // return res.end('<h1>User Profile</h1>');
     const user = await User.findById(req.params.id);
+    
+    let friend1 = await Friendship.findOne({from_user:req.params.id, to_user:req.user.id});
+    let friend2 = await Friendship.findOne({from_user:req.user.id, to_user:req.params.id});
+
+    let friends = false;
+    if(friend1 || friend2){
+        friends = true;
+    }
+    
     return res.render('profile', {
         title: 'Profile',
-        profile_user: user
+        profile_user: user,
+        friends: friends
     })
+    } catch (error) {
+        console.log(err);
+    }
+    
 
 }
 

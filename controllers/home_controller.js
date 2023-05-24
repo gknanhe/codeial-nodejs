@@ -1,7 +1,7 @@
 
 const Post = require('../models/post');
 const User = require('../models/user');
-
+const Friendship = require('../models/friendship');
 
 
 const Comment = require('../models/comment');
@@ -42,7 +42,11 @@ module.exports.home = async function (req, res){
 
 
 
-   
+        let friends =await Friendship.find({from_user:req.user});
+        //console.log(friends);
+        for(let i=0;i<friends.length;i++){
+          await  friends[i].populate('to_user');
+        }
 
 
 
@@ -67,7 +71,8 @@ module.exports.home = async function (req, res){
         return res.render('home', {
             title : 'Codeal | Home',
             posts: posts,
-            all_users: users
+            all_users: users,
+            friends: friends,
         })
     } catch (error) {
         console.log('error in getting post ',error)

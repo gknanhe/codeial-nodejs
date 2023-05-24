@@ -24,6 +24,9 @@ router.use('/comments', require('./comments'));
 //router for likes
 router.use('/likes', require('./likes'));
 
+//router for friendship
+router.use('/friends', require('./friends'));
+
 /* general syntax*/
 //for any further routes, access from here
 //router.use('/routerName', require('./routerFile'));
