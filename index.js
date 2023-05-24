@@ -30,6 +30,12 @@ const flash = require('connect-flash');   //to show flash notification
 const customMware = require('./config/middleware');
 
 
+//setup chat socket
+const chatServer = require('http').Server(app);
+const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
+chatServer.listen(5000);
+console.log('chat server is listening on port 5000');
+
 app.use(sassMiddleware({
     src: './assets/scss',   //src to look for scss files
     dest: './assets/css',  //where to store converted files
