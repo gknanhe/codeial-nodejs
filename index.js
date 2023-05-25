@@ -1,4 +1,6 @@
 const express = require('express');
+const env = require('./config/environment');
+const logger = require('morgan');
 const expressLayouts = require('express-ejs-layouts');
 const app = express();
 const cookieParser = require('cookie-parser');
@@ -35,14 +37,18 @@ const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('chat server is listening on port 5000');
+const path = require('path');
 
-app.use(sassMiddleware({
-    src: './assets/scss',   //src to look for scss files
-    dest: './assets/css',  //where to store converted files
-    debug: true,
-    outputStyle: 'expanded' ,  //css will be extended
-    prefix: '/css'   //where to look for css files
-}))
+if(env.name == 'developement'){
+    app.use(sassMiddleware({
+        src: path.join(__dirname, env.asset_path, '/scss'),   //src to look for scss files
+        dest: path.join(__dirname, env.asset_path, '/css'),  //where to store converted files
+        debug: true,
+        outputStyle: 'expanded' ,  //css will be extended
+        prefix: '/css'   //where to look for css files
+    }));
+}
+
 
 //to read through req use urlEncoder
 app.use(express.urlencoded());
@@ -52,10 +58,13 @@ app.use(cookieParser());
 
 // app.use(express.static('./assets'));
         // OR
-app.use(express.static(__dirname + '/assets'));//if used this then include / in css link at start
+app.use(express.static(__dirname + env.asset_path));//if used this then include / in css link at start
 
 //route for avatar path
 app.use('/uploads', express.static(__dirname + '/uploads'));
+
+app.use(logger(env.morgan.mode, env.morgan.options));
+
 app.use(expressLayouts);
 // extract styles and script from sub pages
 app.set('layout extractStyles',true);
@@ -78,7 +87,7 @@ app.set('views', './views');
 // mongo store is used to store the session cookie in the db
 app.use(session({
     name: 'codeial' ,  //name of cookie
-    secret: 'blahsomething',   // encryption done with this words
+    secret: env.session_cookie_key,   // encryption done with this words
     saveUninitialized: false,
     resave: false,
     //session time 
