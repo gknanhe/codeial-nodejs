@@ -1,63 +1,56 @@
 <html>
-    <head>
-        <title>
-            <%= title %>
-        </title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <head>
+    <title><%= title %></title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-        <link rel="stylesheet" href="/css/layout.css">
-        <link rel="stylesheet" href="/css/header.css">
-        <link rel="stylesheet" href="/css/footer.css">
-        <!-- Add link for css -->
-        <%- style -%>
+    <link rel="stylesheet" href="<%= assetPath('css/layout.css') %>" />
+    <link rel="stylesheet" href="<%= assetPath('css/header.css') %>" />
+    <link rel="stylesheet" href="<%= assetPath('css/footer.css') %>" />
 
-    </head>
-    <body>
-        <!-- including header and footer from another file -->
-        <%- include('_header'); -%>
+    <!-- Add link for css -->
+    <%- style -%>
+  </head>
+  <body>
+    <!-- including header and footer from another file -->
+    <%- include('_header'); -%>
 
-
-        <!-- here body is a variable part
+    <!-- here body is a variable part
         what needs to be shown depends which file is called
         rest layout will same for every page -->
-        <main id="layout-main">
-            <%- body %>
+    <main id="layout-main"><%- body %></main>
 
-        </main>
+    <%- include('_footer'); -%>
 
-        <%- include('_footer'); -%>
+    <!-- Add Script  -->
+    <%- script -%>
 
+    <!-- flash script  -->
+    <script>
 
-
-        <!-- Add Script  -->
-        <%- script -%>
-
-        <!-- flash script  -->
-        <script>
-
-            <% if(flash.success && flash.success.length > 0 ) {%>
-                new Noty({
-                    theme:'relax',
-                    text: '<%= flash.success %>',
-                    type: 'success',
-                    layout: 'topRight',
-                    timeout: '1500'
-                }).show();
-            <% } %>
-                //error
-            <% if(flash.error && flash.error.length > 0 ) {%>
-                new Noty({
-                    theme:'relax',
-                    text: '<%= flash.error %>',
-                    type: 'error',
-                    layout: 'topRight',
-                    timeout: '1500'
-                }).show();
-            <% } %>
-        </script>
-    </body>
+      <% if(flash.success && flash.success.length > 0 ) {%>
+          new Noty({
+              theme:'relax',
+              text: '<%= flash.success %>',
+              type: 'success',
+              layout: 'topRight',
+              timeout: '1500'
+          }).show();
+      <% } %>
+          //error
+      <% if(flash.error && flash.error.length > 0 ) {%>
+          new Noty({
+              theme:'relax',
+              text: '<%= flash.error %>',
+              type: 'error',
+              layout: 'topRight',
+              timeout: '1500'
+          }).show();
+      <% } %>
+    </script>
+  </body>
 </html>
-
-

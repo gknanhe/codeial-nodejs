@@ -9,83 +9,78 @@
 <!-- here _ is awritten to just specify is differnt from other files -->
 <!-- <%- include('_header'); -%> -->
 
-
 <!-- rest part is not needed -->
-<link rel="stylesheet" href="/css/home.css">
-<link rel="stylesheet" href="/css/chat_box.css">
 
+<!-- assetPath Is a function in view-helpers that helps to access the correct files -->
+<link rel="stylesheet" href="<%= assetPath('css/home.css') %>" />
+<link rel="stylesheet" href="<%= assetPath('css/chat_box.css') %>" />
 
 <div id="home-container">
+  <section id="feed-post">
+    <!-- add a check if user is  not authenticated dont show form -->
+    <h4>Posts</h4>
+    <% if ( locals.user ){%>
 
-    <section id="feed-post">
-        <!-- add a check if user is  not authenticated dont show form -->
-        <h4>Posts</h4>
-        <% if ( locals.user ){%>
-            
-            <form action="/posts/create" id="new-post-form" method="POST">
-                <textarea id="form-input" name="content" cols="30" rows="3" placeholder="Type Something...." required></textarea>
-                <input type="submit" value="Post">
-            </form>
-            <%}%>
+    <form action="/posts/create" id="new-post-form" method="POST">
+      <textarea
+        id="form-input"
+        name="content"
+        cols="30"
+        rows="3"
+        placeholder="Type Something...."
+        required
+      ></textarea>
+      <input type="submit" value="Post" />
+    </form>
+    <%}%>
 
+    <div id="post-list-container">
+      <ul>
+        <% for( post of posts ) { %>
 
-
-                <div id="post-list-container">
-                    <ul>
-                        <% for( post of posts ) { %>
-
-                            <!-- including partials -->
-                            <%- include('_post') -%>
-
-                                <% } %>
-                    </ul>
-                </div>
-    </section>
-    <div class="chat-section">
-        <%- include('_chat_box') -%>
+        <!-- including partials -->
+        <%- include('_post') -%> <% } %>
+      </ul>
     </div>
-    <section id="user-friends">
-        <div id="people">
-            <h4>People</h4>
-        <% for(u of all_users) { %>
-            <p>
-                <a href="/users/profile/<%= u.id %>">
-                    <%= u.name %>
-                </a>
-            </p>
-            <% } %>
-        </div>
-        <div id="friends">
-            <h4>Friends</h4>
-        <% for(u of friends){%>
-            <p><a href="/users/profile/<%=u.to_user.id%>"><%=u.to_user.name %></a></p>
-        <%}%>
-        </div> 
-    </section>
-
-
+  </section>
+  <div class="chat-section"><%- include('_chat_box') -%></div>
+  <section id="user-friends">
+    <div id="people">
+      <h4>People</h4>
+      <% for(u of all_users) { %>
+      <p>
+        <a href="/users/profile/<%= u.id %>"> <%= u.name %> </a>
+      </p>
+      <% } %>
+    </div>
+    <div id="friends">
+      <h4>Friends</h4>
+      <% for(u of friends){%>
+      <p><a href="/users/profile/<%=u.to_user.id%>"><%=u.to_user.name %></a></p>
+      <%}%>
+    </div>
+  </section>
 </div>
 <!-- importing this scripts for creating the comments  -->
-<script src="/js/home_post_comments.js"></script>
-<script src="/js/home_posts.js"></script>
+<script src="<%= assetPath('js/home_post_comments.js') %>"></script>
+<script src="<%= assetPath('js/home_posts.js') %>"></script>
 
 <!-- CHANGE :: import the script file for toggle likes, also run it over for the already present posts and comments on the page -->
-<script src="js/toggle_likes.js"></script>
+<script src="<%= assetPath('js/toggle_likes.js') %>"></script>
 <script>
-    $('.toggle-like-button').each(function(){
-        let self = this;
-        let toggleLike = new ToggleLike(self);
-    });
+  $(".toggle-like-button").each(function () {
+    let self = this;
+    let toggleLike = new ToggleLike(self);
+  });
 </script>
 
 <!-- //chat socket  -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
-<script src="/js/chat_engine.js"></script>
-
+<script src="<%= assetPath('js/chat_engine.js') %>"></script>
 <%if(locals.user){ %>
-    <script >
-        new ChatEngine('user-chat-box','<%=locals.user.email %>')   
-    </script>
+<script>
+  new ChatEngine("user-chat-box", "<%=locals.user.email %>");
+</script>
 <%}%>
 <!-- for js  -->
 <!-- <script src="./css/js"></script> -->
