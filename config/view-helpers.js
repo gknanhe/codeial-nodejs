@@ -29,7 +29,8 @@ const path = require("path");
 module.exports = (app) => {
   app.locals.assetPath = function (filePath) {
     if (env.name == "development") {
-      return filePath;
+      // console.log("filepath helpers", filePath);
+      return "/" + filePath;
     }
 
     return (

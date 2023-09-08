@@ -33,14 +33,14 @@ const sassMiddleware = require("node-sass-middleware");
 const flash = require("connect-flash"); //to show flash notification
 const customMware = require("./config/middleware");
 
-console.log(env.asset_path);
-
 //setup chat socket
 const chatServer = require("http").Server(app);
 const chatSockets = require("./config/chat_sockets").chatSockets(chatServer);
 chatServer.listen(2000);
 console.log("chat server is listening on port 5000");
 const path = require("path");
+
+console.log("paths assets", path.join(__dirname, env.asset_path, "/css"));
 
 if (env.name == "developement") {
   app.use(
@@ -55,8 +55,8 @@ if (env.name == "developement") {
 }
 
 //to read through req use urlEncoder
-app.use(express.urlencoded());
-
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 //use cookie parseer
 app.use(cookieParser());
 
