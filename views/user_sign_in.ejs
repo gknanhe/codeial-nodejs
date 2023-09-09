@@ -13,7 +13,8 @@
   <a href="/users/forgot-password">Forgot Password?</a>
 </p> -->
 
-<link rel="stylesheet" href="<%= assetPath('css/login.css') %>" />
+<!-- another template -->
+<!-- <link rel="stylesheet" href="<%= assetPath('css/login.css') %>" />
 
 <section class="wrapper">
   <div class="content">
@@ -57,5 +58,74 @@
     <footer>
       <a href="#" title="Forgot Password">Forgot Password</a>
     </footer>
+  </div>
+</section> -->
+
+<!-- ANOTHER TEMPLATE -->
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<link rel="stylesheet" href="<%= assetPath('css/login.css') %>" />
+
+<!-- <nav>
+	<i class="fa-brands fa-spotify main-logo"></i>
+	<p class="brand-name">Spotify</p>
+</nav> -->
+<section class="login-section">
+  <div class="main-section">
+    <h1 class="heading">Log in to <span>Codeial</span></h1>
+    <div class="login-options">
+      <div class="op1">
+        <a href="/users/auth/google">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+            alt="google"
+            width="20"
+          />
+          <!-- <i class="fa-brands fa-google"></i> -->
+          <p class="login-text">Continue With Google</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="login-form">
+      <form action="/users/create-session" method="POST">
+        <table>
+          <tr>
+            <td class="labels">Email or username</td>
+          </tr>
+          <tr>
+            <td class="flds">
+              <input type="text" name="email" class="input-fld" />
+            </td>
+          </tr>
+          <tr>
+            <td class="labels">Password</td>
+          </tr>
+          <tr>
+            <td class="flds">
+              <input type="password" name="password" class="input-fld" />
+            </td>
+          </tr>
+          <tr>
+            <td class="checks">
+              <input type="checkbox" id="remember" />
+              <label for="remember">Remember me</label>
+            </td>
+          </tr>
+        </table>
+        <button type="submit" class="log-in-btn">Log In</button>
+      </form>
+      <a href="/users/forgot-password" class="link">Forgot your password?</a>
+    </div>
+    <div class="extra-option">
+      Don't have an account?
+      <a href="/users/sign-up" class="link">Sign up for Codeial</a>
+    </div>
   </div>
 </section>

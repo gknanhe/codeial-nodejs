@@ -29,7 +29,7 @@ const passportJwt = require("./config/passport-jwt-strategy");
 const passportGoogle = require("./config/passport-google-oauth2-strategy");
 const MongoStore = require("connect-mongo"); // lib to store session info
 //scss middleware to convert scss into css
-const sassMiddleware = require("node-sass-middleware");
+// const sassMiddleware = require("node-sass-middleware");
 const flash = require("connect-flash"); //to show flash notification
 const customMware = require("./config/middleware");
 
@@ -40,19 +40,19 @@ chatServer.listen(2000);
 console.log("chat server is listening on port 5000");
 const path = require("path");
 
-console.log("paths assets", path.join(__dirname, env.asset_path, "/css"));
+console.log("paths assets", path.join(__dirname, env.asset_path, "/scss"));
 
-if (env.name == "developement") {
-  app.use(
-    sassMiddleware({
-      src: path.join(__dirname, env.asset_path, "/scss"), //src to look for scss files
-      dest: path.join(__dirname, env.asset_path, "/css"), //where to store converted files
-      debug: true,
-      outputStyle: "extended", //css will be extended
-      prefix: "/css", //where to look for css files
-    })
-  );
-}
+// if (env.name == "developement") {
+//   app.use(
+//     sassMiddleware({
+//       src: path.join(__dirname, env.asset_path, "/scss"), //src to look for scss files
+//       dest: path.join(__dirname, env.asset_path, "/css"), //where to store converted files
+//       debug: true,
+//       outputStyle: "extended", //css will be extended
+//       prefix: "/css", //where to look for css files
+//     })
+//   );
+// }
 
 //to read through req use urlEncoder
 app.use(express.urlencoded({ extended: true }));

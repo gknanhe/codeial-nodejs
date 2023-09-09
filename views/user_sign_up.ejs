@@ -1,19 +1,111 @@
-<h1>Sign Up</h1>
-
+<!-- <h1>Sign Up</h1>
 
 <form action="/users/create" method="POST">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-    <input type="submit" >
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="email" name="email" placeholder="Your Email" required />
+  <input type="password" name="password" placeholder="Password" required />
+  <input
+    type="password"
+    name="confirm_password"
+    placeholder="Confirm Password"
+    required
+  />
+  <input type="submit" />
+</form> -->
 
+<!-- <p>
+  <a href="/users/auth/google">Google SingIn/ SIgnUp</a>
+</p> -->
 
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<link rel="stylesheet" href="<%= assetPath('css/login.css') %>" />
 
+<!-- <nav>
+	<i class="fa-brands fa-spotify main-logo"></i>
+	<p class="brand-name">Spotify</p>
+</nav> -->
+<section class="login-section">
+  <div class="main-section">
+    <h1 class="heading">Signup to <span>Codeial</span></h1>
+    <div class="login-options">
+      <div class="op1">
+        <a href="/users/auth/google">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
+            alt="google"
+            width="20"
+          />
+          <!-- <i class="fa-brands fa-google"></i> -->
+          <p class="login-text">Continue With Google</p>
+        </a>
+      </div>
+    </div>
 
-</form>
-
-
-<p>
-    <a href="/users/auth/google">Google SingIn/ SIgnUp</a>
-</p>
+    <div class="login-form">
+      <form action="/users/create" method="POST">
+        <table>
+          <tr>
+            <td class="labels">Name</td>
+          </tr>
+          <tr>
+            <td class="flds">
+              <input type="text" name="name" class="input-fld" required />
+            </td>
+          </tr>
+          <tr>
+            <td class="labels">Email or username</td>
+          </tr>
+          <tr>
+            <td class="flds">
+              <input type="text" name="email" class="input-fld" required />
+            </td>
+          </tr>
+          <tr>
+            <td class="labels">Password</td>
+          </tr>
+          <tr>
+            <td class="flds">
+              <input
+                type="password"
+                name="password"
+                class="input-fld"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td class="labels">Confirm Password</td>
+          </tr>
+          <tr>
+            <td class="flds">
+              <input
+                type="password"
+                name="confirm_password"
+                class="input-fld"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td class="checks">
+              <input type="checkbox" id="remember" />
+              <label for="remember">Remember me</label>
+            </td>
+          </tr>
+        </table>
+        <button type="submit" class="log-in-btn">Sign Up</button>
+      </form>
+      <!-- <a href="/users/forgot-password" class="link">Forgot your password?</a> -->
+    </div>
+    <div class="extra-option">
+      Have an account?
+      <a href="/users/sign-in" class="link">Log in</a>
+    </div>
+  </div>
+</section>
