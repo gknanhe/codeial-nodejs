@@ -9,62 +9,109 @@
 <!-- <%- include('_header'); -%> -->
 <link rel="stylesheet" href="<%= assetPath('css/profile.css') %>" />
 
-<img
-  src="/<%= profile_user.avatar%>"
-  alt="<%= profile_user.name %>"
-  width="100"
-/>
+<!-- if user matches then show form  -->
 
 <% if(user.id == profile_user.id){ %>
-<h3>USR Profile : <%= profile_user.name %></h3>
-<p><%= profile_user.email %></p>
+<div class="wrapper">
+  <div class="imgContainer">
+    <% if(profile_user.avatar){ %>
+    <img
+      class="user-avatar"
+      src="<%=profile_user.avatar.avatar %>"
+      data-src="<%= profile_user.avatar.avatar %>"
+      alt="<%= profile_user.name %>"
+      loading="lazy"
+    />
+    <% }else{ %>
+    <img
+      class="user-avatar"
+      src="<%= assetPath('images/empty-avatar.png') %>"
+      data-src="<%= assetPath('images/empty-avatar.png') %>"
+      alt="<%= pprofile_user.name %>"
+      loading="lazy"
+    />
+    <% } %>
+    <!-- <img
+      src="/<%= profile_user.avatar%>"
+      alt="<%= profile_user.name %>"
+      width="100"
+    /> -->
+  </div>
+  <div class="user-container">
+    <div class="user-name"><%= profile_user.name %></div>
+    <span> <%= profile_user.email %> </span>
+  </div>
+  <div class="formUpdateContainer">
+    <form
+      action="/users/update/<%= profile_user.id %>"
+      enctype="multipart/form-data"
+      method="post"
+    >
+      <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        value=" <% profile_user.name %>"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Your Email"
+        value="<% profile_user.email %>"
+        required
+      />
 
-<!-- if user matches then show form  -->
-<form
-  action="/users/update/<%= profile_user.id %>"
-  enctype="multipart/form-data"
-  method="post"
->
-  <input
-    type="text"
-    name="name"
-    placeholder="Your Name"
-    value=" <% profile_user.name %>"
-    required
-  />
-  <input
-    type="email"
-    name="email"
-    placeholder="Your Email"
-    value="<% profile_user.email %>"
-    required
-  />
-
-  <input type="file" name="avatar" placeholder="Profile Picture" />
-  <input type="submit" value="Update" />
-</form>
-
+      <input type="file" name="avatar" placeholder="Profile Picture" />
+      <input type="submit" value="Update" />
+    </form>
+  </div>
+</div>
 <% } else { %>
-<!-- else show only user profile  -->
-<h3>USR Profile : <%= profile_user.name %></h3>
-<p><%= profile_user.email %></p>
-
+<div class="wrapper">
+  <div class="imgContainer">
+    <% if(profile_user.avatar){ %>
+    <img
+      class="user-avatar"
+      src="<%=profile_user.avatar.avatar %>"
+      data-src="<%= profile_user.avatar.avatar %>"
+      alt="<%= profile_user.name %>"
+      loading="lazy"
+    />
+    <% }else{ %>
+    <img
+      class="user-avatar"
+      src="<%= assetPath('images/empty-avatar.png') %>"
+      data-src="<%= assetPath('images/empty-avatar.png') %>"
+      alt="<%= profile_user.name %>"
+      loading="lazy"
+    />
+    <% } %>
+  </div>
+  <div class="user-container">
+    <div class="user-name"><%= profile_user.name %></div>
+    <span> <%= profile_user.email %> </span>
+  </div>
+  <div class="btnContainer">
+    <% if(user.id != profile_user.id) {%> <% if(friends==false) {%>
+    <p id="friend-style">
+      <a href="/friends/toggle/?id=<%=profile_user.id%>" id="toggle-friend"
+        >add friend</a
+      >
+    </p>
+    <%}%> <% if(friends==true) {%>
+    <p id="friend-style">
+      <a href="/friends/toggle/?id=<%=profile_user.id%>" id="toggle-friend"
+        >remove friend</a
+      >
+    </p>
+    <%}%> <%}%>
+  </div>
+</div>
 <% } %>
 
-<br />
-<% if(user.id != profile_user.id) {%> <% if(friends==false) {%>
-<p id="friend-style">
-  <a href="/friends/toggle/?id=<%=profile_user.id%>" id="toggle-friend"
-    >add friend</a
-  >
-</p>
-<%}%> <% if(friends==true) {%>
-<p id="friend-style">
-  <a href="/friends/toggle/?id=<%=profile_user.id%>" id="toggle-friend"
-    >remove friend</a
-  >
-</p>
-<%}%> <%}%>
+<!-- else show only user profile  -->
+
 <script src="/js/toggle_friend.js"></script>
 
 <!-- <%- include('_footer'); -%>

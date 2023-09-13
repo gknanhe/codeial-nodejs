@@ -12,6 +12,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
+    <script
+      src="https://kit.fontawesome.com/34162fcf4d.js"
+      crossorigin="anonymous"
+    ></script>
+
     <link rel="stylesheet" href="<%= assetPath('css/layout.css') %>" />
     <link rel="stylesheet" href="<%= assetPath('css/header.css') %>" />
     <link rel="stylesheet" href="<%= assetPath('css/footer.css') %>" />
@@ -21,14 +26,13 @@
   </head>
   <body>
     <!-- including header and footer from another file -->
-    <%- include('_header'); -%>
+    <div class="headerDiv"><%- include('_header'); -%></div>
 
     <!-- here body is a variable part
         what needs to be shown depends which file is called
         rest layout will same for every page -->
-    <main id="layout-main"><%- body %></main>
-
-    <%- include('_footer'); -%>
+    <div class="mainLayoutDiv"><%- body %></div>
+    <div class="footerDiv"><%- include('_footer'); -%></div>
 
     <!-- Add Script  -->
     <%- script -%>

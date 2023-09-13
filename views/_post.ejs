@@ -1,54 +1,181 @@
-<li id="post-<%= post._id %>">
-    <p>
-        <% if (locals.user && locals.user.id==post.user.id) {%>
-            <small>
-                <a class="delete-post-button" href="/posts/destroy/<%= post._id %>">X</a>
-            </small>
-            <% } %>
-                <%= post.content %>
-                    <br>
-                    <small>
-                        <%= post.user.name %>
-                    </small>
+<link rel="stylesheet" href="<%= assetPath('css/post.css') %>" />
 
-                    <!-- CHANGE :: display the likes of this post, if the user is logged in, then show the link to toggle likes, else, just show the count -->
-                    <br>
-                    <!-- study about the data attribute -->
-                    <small>
-                        <% if (locals.user){ %>
-                            <a class="toggle-like-button" data-likes="<%= post.likes.length %>"
-                                href="/likes/toggle/?id=<%=post._id%>&type=Post">
-                                <%= post.likes.length %> Likes
-                            </a>
-                            <% }else{ %>
-                                <%= post.likes.length %> Likes
-                                    <% } %>
-                    </small>
+<div class="postContainer" id="post-<%= post._id %>" key="{post._id}">
+  <div class="postWrapper">
+    <div class="postHeader">
+      <div class="postAvatar">
+        <div class="userAvatarContainer">
+          <% if(post.user.avatar){ %>
+          <img
+            class="user-avatar create-post-avatar"
+            src="<%= post.user.avatar %>"
+            alt="<%= post.user.name %>"
+            onclick="window.location.href='/users/profile/<%=post.user._id%>'"
+            onerror="this.onerror=null; this.src=`<%= assetPath('images/empty-avatar.png') %>`"
+            loading="lazy"
+          />
+          <% }else{ %>
+          <img
+            class="user-avatar create-post-avatar"
+            src="<%= assetPath('images/empty-avatar.png') %>"
+            alt="<%= post.user.name %>"
+            onclick="window.location.href='/users/profile/<%=post.user._id%>'"
+            onerror="this.onerror=null; this.src=`<%= assetPath('images/empty-avatar.png') %>`"
+            loading="lazy"
+          />
+          <% } %>
 
-    </p>
+          <!-- <img
+              src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+              alt="user-pic"
+            /> -->
+          <div class="userNameContainer">
+            <a href="`/users/profile/<%=post.user._id%>`" class="postAuther">
+              <%= post.user.name %>
+            </a>
+            <span class="postTime"><%= post.createdAt %></span>
+          </div>
+        </div>
+        <div class="deletePost">
+          <% if (locals.user && locals.user.id==post.user.id) {%>
+          <a class="delete-post-button" href="/posts/destroy/<%= post._id %>"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-x"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </a>
+          <% } %>
+        </div>
+      </div>
+      <div class="postContent"><%= post.content %></div>
+      <% if (locals.user){ %>
 
-    <div class="post-comments">
-        <% if (locals.user) {%>
-            <!-- let's give an id to the new comment form, we'll also need to make the same changes in home_posts.js where we're adding a post to the page -->
+      <div class="postActions">
+        <div class="postLike">
+          <button>
+            <a
+              class="toggle-like-button"
+              data-likes="<%= post.likes.length %>"
+              href="/likes/toggle/?id=<%=post._id%>&type=Post"
+            >
+              <% try{ let likes = []; likes = post.likes.filter(like =>
+              (like.user._id.toString() === locals.user._id.toString()) &&
+              (like.onModel === "Post") && (post._id.toString() ===
+              like.likeable._id.toString())); if(likes.length > 0){ %>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="39.081"
+                height="35.176"
+                viewBox="0 0 39.081 35.176"
+              >
+                <path
+                  id="Red-Like-Icon-09uh"
+                  d="M257.329,9.511a11.035,11.035,0,0,0-15.606-.053l-.705.7-.7-.7A11.035,11.035,0,1,0,224.659,25l.7.7,15.552,15.66,15.66-15.553.7-.7a11.035,11.035,0,0,0,.053-15.606"
+                  transform="translate(-221.453 -6.194)"
+                  fill="#e74e5f"
+                />
+              </svg>
+              <% }else{ %>
 
-            <form id="post-<%= post._id %>-comments-form" action="/comments/create" method="post">
-                <input id="comment-input" type="text" name="content" placeholder="type something..." required>
-                <input type="hidden" name="post" value="<%= post._id%>">
-                <input type="submit" value="Comment">
-            </form>
-            <% } %>
-                <div class="post-comments-list">
-                    <ul id="post-comments-<%= post._id %>">
-                        <!-- <%if (Array.isArray(post.comments)) {%> -->
-                        <% for(comment of post.comments){ %>
+              <svg
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+                ></path>
+              </svg>
 
-                            <!-- including partials  -->
-                            <%- include('_comment') -%>
+              <% }}catch(err){console.log(err);} %>
 
-                                <% }%>
-                                    <!-- <%}%> -->
+              <span><%= post.likes.length %></span>
+            </a>
+          </button>
+        </div>
 
-                    </ul>
-                </div>
+        <div class="postCommentsIcon">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2190/2190552.png"
+            alt="comments-icon"
+          />
+          <span><%= post.comments.length %></span>
+        </div>
+      </div>
+      <% }else{ %>
+      <div class="postActions">
+        <div class="likes">
+          <svg
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+            ></path>
+          </svg>
+          <span><%= post.likes.length %></span>
+        </div>
+        <div class="postCommentsIcon">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2190/2190552.png"
+            alt="comments-icon"
+          />
+          <span><%= post.comments.length %></span>
+        </div>
+      </div>
+
+      <% } %> <% if (locals.user ) {%>
+      <form
+        id="post-<%= post._id %>-comments-form"
+        action="/comments/create"
+        method="post"
+      >
+        <div class="postCommentBox">
+          <textarea
+            placeholder="Start typing a comment.."
+            id="comment-input"
+            type="text"
+            name="content"
+            required
+          ></textarea>
+          <div class="PostBtnContainer">
+            <input type="hidden" name="post" value="<%= post._id%>" />
+            <input type="submit" value="Comment" />
+          </div>
+        </div>
+      </form>
+      <% } %>
+
+      <div class="postCommentsList">
+        <div id="post-comments-<%= post._id %>">
+          <!-- <%if (Array.isArray(post.comments)) {%> -->
+          <% for(comment of post.comments){ %>
+
+          <!-- including partials  -->
+          <%- include('_comment') -%> <% }%>
+          <!-- <%}%> -->
+        </div>
+      </div>
     </div>
-</li>
+  </div>
+</div>
+
+<!-- <script src="<%= assetPath('js/post.js') %>"></script> -->

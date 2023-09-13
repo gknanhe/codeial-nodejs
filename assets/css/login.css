@@ -26,10 +26,12 @@ nav {
   padding-block: 20px;
   padding-left: 20px;
 }
+
 nav .main-logo {
   font-size: 30px;
   color: #1ed760;
 }
+
 nav .brand-name {
   font-size: 25px;
   font-weight: 600;
@@ -40,6 +42,7 @@ nav .brand-name {
   justify-content: center;
   align-items: center;
   margin: 50px;
+  width: 95vw;
 }
 
 .main-section {
@@ -54,13 +57,16 @@ nav .brand-name {
   align-items: center;
   gap: 60px;
 }
+
 .main-section .heading {
   font-size: 40px;
 }
+
 .main-section .heading span {
   color: #1ed760;
   font-weight: lighter;
 }
+
 .main-section .login-options {
   display: flex;
   flex-direction: column;
@@ -71,6 +77,7 @@ nav .brand-name {
   width: 75%;
   border-bottom: 0.1px solid #1c1c1c;
 }
+
 .main-section .login-options a {
   text-decoration: none;
   inline-size: 100%;
@@ -78,6 +85,7 @@ nav .brand-name {
   justify-content: space-between;
   align-items: center;
 }
+
 .main-section .login-options .op1 {
   cursor: pointer;
   border: 1px solid #878787;
@@ -90,14 +98,17 @@ nav .brand-name {
   border-radius: 500px;
   align-items: center;
 }
+
 .main-section .login-options .op1 .login-text {
   text-align: center;
   font-weight: 700;
   flex-grow: 1;
 }
+
 .main-section .login-options .op1:hover {
   border: 1px solid white;
 }
+
 .main-section .login-form {
   display: flex;
   flex-direction: column;
@@ -106,42 +117,50 @@ nav .brand-name {
   width: 75%;
   border-bottom: 0.1px solid #1c1c1c;
 }
+
 .main-section .login-form form,
 .main-section .login-form table {
   width: inherit;
 }
+
 .main-section .login-form form {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
+
 .main-section .login-form .labels {
   padding-block: 5px;
   font-size: 1.05rem;
   font-weight: 600;
 }
+
 .main-section .login-form .flds {
   padding-bottom: 10px;
 }
+
 .main-section .login-form .input-fld {
   width: 350px;
   height: 45px;
   font-size: 1.2rem;
-  color: white;
+  color: rgb(255, 255, 255);
   padding-left: 15px;
   border-radius: 5px;
   border: 2px solid gray;
   background: #1c1c1c;
 }
+
 .main-section .login-form #remember {
   scale: 1.5;
 }
+
 .main-section .login-form .checks {
   padding-bottom: 20px;
   display: flex;
   gap: 10px;
 }
+
 .main-section .login-form .log-in-btn {
   width: 350px;
   margin-bottom: 20px;
@@ -154,6 +173,7 @@ nav .brand-name {
   font-weight: bolder;
   cursor: pointer;
 }
+
 .main-section .login-form .link {
   text-align: center;
   width: 100%;
@@ -203,5 +223,6 @@ nav .brand-name {
     width: 100%;
   }
 }
+
 
 /*# sourceMappingURL=login.css.map */

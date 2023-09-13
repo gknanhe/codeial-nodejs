@@ -1,30 +1,270 @@
+@import url("https://fonts.cdnfonts.com/css/flow-circular");
+#layout-header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 70px;
+  padding: 0px 20px;
+  z-index: 110;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  flex-direction: row;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgb(62, 78, 251);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
+  font-family: "Flow Circular", sans-serif;
+}
+
 #layout-header nav {
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
-  background: #2196f3;
   color: white;
-  box-shadow: 1px 1px 1px 1px lightgrey;
+  width: auto;
+  font-family: "Flow Circular", sans-serif;
+  flex-grow: 0.9;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+#layout-header nav a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
 }
 
 #layout-header nav .mini-logo p {
+  font-family: "Flow Circular", sans-serif;
   margin: 5px;
-  font-size: 1.4rem;
+  font-size: 2.4rem;
   font-weight: bold;
 }
 
-#layout-header nav .auth-links ul {
-  margin: 5% 10px;
+#layout-header nav .auth-links {
+  font-family: "Flow Circular", sans-serif;
+  margin: 5px 40px;
   display: flex;
   justify-content: space-between;
   padding-inline-start: 0;
+  gap: 25px;
 }
 
-#layout-header nav .auth-links ul li {
-  margin-right: 30px;
+#layout-header nav .auth-links .signUp,
+#layout-header nav .auth-links .signIn,
+#layout-header nav .auth-links .signOut {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 20px;
+  border-radius: 10px;
+  padding: 10px 15px;
+  background: rgba(41, 70, 156, 0.7098039216);
+  border: none;
+  outline: none;
+  font-size: 14px;
+}
+
+#layout-header nav .auth-links .user-name {
+  font-family: "Flow Circular", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+#layout-header nav .auth-links .user-name img {
+  width: 45px;
+  border-radius: 50%;
 }
 
 #layout-header nav a {
   color: white;
   text-decoration: none;
 }
+
+#layout-header input[type=checkbox]:checked ~ #sidebarMenu,
+#layout-header input[type=checkbox]:checked ~ .sidemenuContainer {
+  transform: translateX(0);
+}
+
+#layout-header input[type=checkbox] {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  display: none;
+}
+
+.openSidebarMenu,
+.sidebarIconToggle {
+  display: none;
+}
+
+#layout-header .sidebarIconToggle {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: absolute;
+  z-index: 99;
+  height: 100%;
+  width: 100%;
+  top: 30px;
+  right: 55px;
+  height: 22px;
+  width: 22px;
+}
+
+#layout-header .sidebarIconToggle .spinner {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background-color: #fff;
+}
+
+#layout-header .sidebarIconToggle .horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: right;
+  margin-top: 3px;
+}
+
+#layout-header .sidebarIconToggle .part-1 {
+  position: relative;
+  transition: all 0.3s;
+  box-sizing: border-box;
+  float: right;
+}
+
+#layout-header .sidebarIconToggle .part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  position: relative;
+  float: right;
+  margin-top: 3px;
+}
+
+#layout-header input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  opacity: 0;
+}
+
+#layout-header input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  transform: rotate(135deg);
+  margin-top: 7px;
+}
+
+#layout-header input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
+  transition: all 0.3s;
+  box-sizing: border-box;
+  transform: rotate(-135deg);
+  margin-top: -7px;
+}
+
+#layout-header .sidemenuContainer {
+  z-index: 5;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(100vw);
+  transition: transform 250ms ease-in-out;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 2;
+  opacity: 1;
+  backdrop-filter: blur(1px); /* Add a blur effect */
+}
+
+#layout-header #sidebarMenu {
+  z-index: 5;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: -60;
+  width: 300px;
+  margin-top: 60px;
+  transform: translateX(300px);
+  transition: transform 250ms ease-in-out;
+  background: linear-gradient(180deg, #fc466b 0%, #3f5efb 100%);
+}
+
+#layout-header #sidebarMenu .sidebarMenuInner {
+  margin-top: 110px;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#layout-header #sidebarMenu .sidebarMenuInner li {
+  list-style: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 20px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#layout-header #sidebarMenu .sidebarMenuInner li span {
+  display: block;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#layout-header #sidebarMenu .sidebarMenuInner li a {
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (max-width: 765px) {
+  #layout-header {
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  #layout-header nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+  }
+  #layout-header nav a {
+    gap: 0;
+  }
+  nav .mini-logo p {
+    font-family: "Flow Circular", sans-serif;
+    margin: 5px;
+    font-size: 1.5rem !important;
+    font-weight: bold;
+  }
+  .name {
+    display: none;
+  }
+  #layout-header nav .auth-links .signUp,
+  #layout-header nav .auth-links .signIn,
+  #layout-header nav .auth-links .signOut {
+    display: none;
+  }
+  .openSidebarMenu,
+  .sidebarIconToggle {
+    display: block;
+  }
+}
+
+
+/*# sourceMappingURL=header.css.map */
