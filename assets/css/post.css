@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .postWrapper {
@@ -111,6 +112,32 @@
   /* z-index: -1; */
 }
 
+/* POST LIKE ANIMATION */
+.heart {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  background-image: url("https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: 2900%;
+}
+
+/* .heart:hover {
+  background-position:right;
+} */
+.is_animating {
+  animation: heart-burst 0.8s steps(28) 1;
+}
+
+@keyframes heart-burst {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}
 .postActions {
   padding: 5px;
   display: flex;
@@ -232,8 +259,8 @@
 }
 
 .postCommentsItem {
-  background: rgba(79, 91, 139, 0.0588235294);
-  border-radius: 4px;
+  background: rgba(79, 91, 139, 0.28);
+  border-radius: 6px;
   padding: 10px;
   margin-bottom: 14px;
   /* background: #4f5b8b0f;

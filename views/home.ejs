@@ -64,20 +64,25 @@
   </section>
   <div class="chat-section"><%- include('_chat_box') -%></div>
   <section id="user-friends">
-    <div id="people">
-      <h4>People</h4>
-      <% for(u of all_users) { %>
-      <p>
-        <a href="/users/profile/<%= u.id %>"> <%= u.name %> </a>
-      </p>
-      <% } %>
+    <div class="friendsList">
+      <div class="header">People</div>
+      <!-- <div id="people"> -->
+      <!-- <h4>People</h4> -->
+      <div class="wrapperContainer">
+        <% for(u of all_users) { %> <%- include('_people') -%> <% } %>
+        <div class="loadContainer">
+          <a href="#" id="loadMore">Load More...</a>
+          <a href="#" id="loadLess">Load Less</a>
+        </div>
+      </div>
     </div>
-    <div id="friends">
-      <h4>Friends</h4>
-      <% for(u of friends){%>
-      <p><a href="/users/profile/<%=u.to_user.id%>"><%=u.to_user.name %></a></p>
-      <%}%>
-    </div>
+    <!-- <div id="friends">
+                <h4>Friends</h4>
+                <% for(u of friends){%>
+                <p><a href="/users/profile/<%=u.to_user.id%>"><%=u.to_user.name %></a></p>
+                <%}%>
+              </div> -->
+    <!-- </div> -->
   </section>
 </div>
 

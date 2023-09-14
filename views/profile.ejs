@@ -10,15 +10,20 @@
 <link rel="stylesheet" href="<%= assetPath('css/profile.css') %>" />
 
 <!-- if user matches then show form  -->
-
-<% if(user.id == profile_user.id){ %>
+<img
+  class="user-avatar create-post-avatar"
+  src="<%= profile_user.avatar %>"
+  alt="<%= profile_user.name %>"
+  onclick="window.location.href='/users/profile/<%=post.user._id%>'"
+  loading="lazy"
+/>
 <div class="wrapper">
   <div class="imgContainer">
     <% if(profile_user.avatar){ %>
     <img
       class="user-avatar"
-      src="<%=profile_user.avatar.avatar %>"
-      data-src="<%= profile_user.avatar.avatar %>"
+      src="<%= profile_user.avatar %>"
+      data-src="<%= profile_user.avatar %>"
       alt="<%= profile_user.name %>"
       loading="lazy"
     />
@@ -27,7 +32,7 @@
       class="user-avatar"
       src="<%= assetPath('images/empty-avatar.png') %>"
       data-src="<%= assetPath('images/empty-avatar.png') %>"
-      alt="<%= pprofile_user.name %>"
+      alt="<%= profile_user.name %>"
       loading="lazy"
     />
     <% } %>
@@ -37,10 +42,15 @@
       width="100"
     /> -->
   </div>
+
   <div class="user-container">
     <div class="user-name"><%= profile_user.name %></div>
     <span> <%= profile_user.email %> </span>
   </div>
+
+  <!-- if user profile is of own -->
+  <% if(user.id == profile_user.id){ %>
+
   <div class="formUpdateContainer">
     <form
       action="/users/update/<%= profile_user.id %>"
@@ -66,15 +76,15 @@
       <input type="submit" value="Update" />
     </form>
   </div>
-</div>
-<% } else { %>
-<div class="wrapper">
+  <!-- </div> -->
+  <% } else { %>
+  <!-- <div class="wrapper">
   <div class="imgContainer">
     <% if(profile_user.avatar){ %>
     <img
       class="user-avatar"
-      src="<%=profile_user.avatar.avatar %>"
-      data-src="<%= profile_user.avatar.avatar %>"
+      src="<%= profile_user.avatar %>"
+      data-src="<%= profile_user.avatar %>"
       alt="<%= profile_user.name %>"
       loading="lazy"
     />
@@ -91,7 +101,7 @@
   <div class="user-container">
     <div class="user-name"><%= profile_user.name %></div>
     <span> <%= profile_user.email %> </span>
-  </div>
+  </div> -->
   <div class="btnContainer">
     <% if(user.id != profile_user.id) {%> <% if(friends==false) {%>
     <p id="friend-style">
@@ -107,13 +117,14 @@
     </p>
     <%}%> <%}%>
   </div>
-</div>
-<% } %>
+  <!-- </div> -->
+  <% } %>
 
-<!-- else show only user profile  -->
+  <!-- else show only user profile  -->
 
-<script src="/js/toggle_friend.js"></script>
+  <script src="/js/toggle_friend.js"></script>
 
-<!-- <%- include('_footer'); -%>
+  <!-- <%- include('_footer'); -%>
     </body>
 </html> -->
+</div>

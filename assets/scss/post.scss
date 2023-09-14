@@ -10,6 +10,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .postWrapper {
@@ -86,7 +87,6 @@
   margin: 15px 0;
   position: relative;
   padding-left: 10px;
-
   border-left: 2px solid transparent; /* Adjust the border width as needed */
   border-image: linear-gradient(to bottom, rgb(46, 76, 246), rgb(112, 58, 213))
     1;
@@ -103,7 +103,6 @@
   margin: auto;
   text-decoration: none;
   margin-right: 10px; */
-
   /* background: linear-gradient(to right, rgb(46, 76, 246), rgb(112, 58, 213));
   position: absolute;
   top: 0;
@@ -112,6 +111,34 @@
   width: 10px;  */
   /* display: block; */
   /* z-index: -1; */
+}
+
+/* POST LIKE ANIMATION */
+.heart {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  background-image: url("https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: 2900%;
+}
+
+/* .heart:hover {
+  background-position:right;
+} */
+
+.is_animating {
+  animation: heart-burst 0.8s steps(28) 1;
+}
+
+@keyframes heart-burst {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
 }
 
 .postActions {
@@ -235,11 +262,10 @@
 }
 
 .postCommentsItem {
-  background: #4f5b8b0f;
-  border-radius: 4px;
+  background: rgb(79 91 139 / 28%);
+  border-radius: 6px;
   padding: 10px;
   margin-bottom: 14px;
-
   /* background: #4f5b8b0f;
   padding: 10px;
   border-radius: 5px; */
@@ -301,11 +327,13 @@
   justify-content: flex-start;
   align-items: flex-start;
 }
+
 .deletePostComment {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
 }
+
 .postAvatar .deletePost a,
 .deletePostComment a {
   text-decoration: none;

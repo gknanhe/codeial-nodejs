@@ -279,3 +279,38 @@
 
   // console.log("hellow");
 }
+
+$(function () {
+  $(".peopleContainer").slice(0, 4).show();
+  $("#loadMore").on("click", function (e) {
+    e.preventDefault();
+    $(".peopleContainer:hidden").slice(0, 4).slideDown();
+    if ($(".peopleContainer:hidden").length == 0) {
+      $("#loadLess").fadeIn("slow");
+      $("#loadMore").hide();
+      // $("#loadMore").text('Load only the first 4');
+    }
+    $("html,body").animate(
+      {
+        slideDown: $(this).offset().top,
+      },
+      1500
+    );
+  });
+
+  $("#loadLess").on("click", function (e) {
+    e.preventDefault();
+    $(".peopleContainer:not(:lt(4))").fadeOut();
+    $("#loadMore").fadeIn("slow");
+    $("#loadLess").hide();
+
+    desiredHeight = $(window).height();
+
+    // $("html, body").animate(
+    //   {
+    //     scrollTop: $(this).offset().top + desiredHeight,
+    //   },
+    //   1500
+    // );
+  });
+});

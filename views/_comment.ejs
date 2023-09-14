@@ -30,7 +30,7 @@
 
 <div class="postCommentsItem" id="comment-<%= comment._id %>">
   <div class="deletePostComment">
-    <% if (locals.user && locals.user.id==post.user.id) {%>
+    <% if (locals.user && locals.user.id==comment.user.id) {%>
     <a class="delete-comment-button" href="/comments/destroy/<%= comment._id %>"
       ><svg
         xmlns="http://www.w3.org/2000/svg"

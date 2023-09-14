@@ -1,16 +1,17 @@
 #layout-footer {
   color: white;
-  background: grey;
+  background: #162042;
   padding: 5px 10px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  width: 100vw;
 }
-
 #layout-footer a {
   color: white;
   text-decoration: none;
 }
-
 #layout-footer .footer-nav ul {
   list-style: none;
 }
+
+/*# sourceMappingURL=footer.css.map */
