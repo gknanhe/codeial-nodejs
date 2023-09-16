@@ -75,7 +75,7 @@ module.exports.home = async function (req, res) {
     // let comm = await Comment.find({})
     // .sort('-createdAt');
 
-    // console.log('comm model',comm)
+    console.log("friends", friends);
 
     let users = await User.find({});
 

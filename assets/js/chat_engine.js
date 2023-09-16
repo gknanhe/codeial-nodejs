@@ -26,6 +26,14 @@ class ChatEngine {
       });
     });
 
+    function scrollToBottom() {
+      var chatMessagesList = $("#chat-messages-list");
+      chatMessagesList.animate(
+        { scrollTop: chatMessagesList.prop("scrollHeight") },
+        500
+      );
+    }
+
     $("#send-message").click(function () {
       let msg = $("#chat-message-input").val();
       if (msg != "") {
@@ -35,7 +43,21 @@ class ChatEngine {
           chatroom: "codeial",
         });
       }
+
+      $("#chat-message-input").val("");
+
+      scrollToBottom();
     });
+
+    function extractUsernameFromEmail(email) {
+      const atIndex = email.indexOf("@");
+      if (atIndex !== -1) {
+        return email.slice(0, atIndex);
+      } else {
+        // Handle the case where there's no "@" symbol in the email
+        return email;
+      }
+    }
 
     self.socket.on("receive_message", function (data) {
       // console.log('message received',data.message);
@@ -46,6 +68,9 @@ class ChatEngine {
       if (data.user_email == self.userEmail) {
         messageType = "self-message";
       }
+
+      let userName = extractUsernameFromEmail(data.user_email);
+
       newMessage.append(
         $("<span>", {
           html: data.message,
@@ -53,12 +78,46 @@ class ChatEngine {
       );
       newMessage.append(
         $("<sub>", {
-          html: data.user_email,
+          // html: data.user_email,
+          html: userName,
         })
       );
       newMessage.addClass(messageType);
 
       $("#chat-messages-list").append(newMessage);
+
+      scrollToBottom();
     });
   }
 }
+
+// function scrollToBottom() {
+//   var chatMessagesList = $("#chat-messages-list");
+//   chatMessagesList.animate(
+//     { scrollTop: chatMessagesList.prop("scrollHeight") },
+//     500
+//   );
+// }
+
+$("#chat-circle").click(function () {
+  $("#chat-circle").toggle("scale");
+  $(".chat-box").toggle("scale");
+
+  if ($("#chat-circle").is(":visible")) {
+    $("#chat-circle ").css("display", "flex");
+  } else {
+    $("#chat-circle ").css("display", "none");
+  }
+});
+
+$(".chat-box-toggle").click(function () {
+  $("#chat-circle").toggle("scale");
+  $(".chat-box").toggle("scale");
+
+  // Center the SVG when the chat circle becomes visible
+  if ($("#chat-circle").is(":visible")) {
+    $("#chat-circle ").css("display", "flex");
+  } else {
+    $("#chat-circle ").css("display", "none");
+  }
+});

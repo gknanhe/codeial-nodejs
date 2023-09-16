@@ -37,7 +37,7 @@ const customMware = require("./config/middleware");
 const chatServer = require("http").Server(app);
 const chatSockets = require("./config/chat_sockets").chatSockets(chatServer);
 chatServer.listen(2000);
-console.log("chat server is listening on port 5000");
+console.log("chat server is listening on port 2000");
 const path = require("path");
 
 console.log("paths assets", path.join(__dirname, env.asset_path, "/scss"));

@@ -49,6 +49,7 @@ form .textContainer {
 
 form .textContainer img {
   width: 45px;
+  height: 45px;
   border-radius: 50%;
   /* margin-right: 15px; */
 }
@@ -104,9 +105,14 @@ form .textContainer textarea::placeholder {
   width: 350px;
   margin-top: 60px;
   background: #151728;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.friendlist {
+.friendslist {
   /* min-width: 290px; */
   /* height: 100vh; */
   background: #151728;
@@ -114,10 +120,11 @@ form .textContainer textarea::placeholder {
   flex-grow: 0.2;
   padding: 10px 15px;
   box-sizing: border-box;
-  border: 1px solid #272a3a;
+  /* border: 1px solid #272a3a; */
   border-radius: 4px;
   font-family: "DM Sans", sans-serif;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
+  width: 100%;
 }
 
 .header {
@@ -133,9 +140,10 @@ form .textContainer textarea::placeholder {
 .wrapperContainer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
 }
+
 .peopleContainer {
   display: none;
   margin: 8px;
@@ -144,13 +152,28 @@ form .textContainer textarea::placeholder {
   padding-left: 15px;
 }
 
-.peopleContainer:hover {
+.peopleContainer:hover,
+.friendsContainer :hover {
   border-radius: 6px;
   background-color: rgba(79, 91, 139, 0.266);
 }
+
 .peopleContainer a {
   text-decoration: none;
   color: #ccc8db;
+}
+.friendsContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  width: 95%;
+  box-sizing: border-box;
+  padding-left: 15px;
+}
+.friendsContainer .friendsItem {
+  padding: 10px;
+  width: 100%;
 }
 .friendUser {
   display: flex;
@@ -172,9 +195,7 @@ form .textContainer textarea::placeholder {
   text-overflow: ellipsis; /* Display an ellipsis (...) when the text overflows the container */
 }
 
-/*# sourceMappingURL=home.css.map */
 /* Loadmore */
-
 .loadContainer {
   flex-grow: 1;
   display: flex;
@@ -226,8 +247,9 @@ form .textContainer textarea::placeholder {
   .formContainer {
     width: 100%;
   }
-
   #post-list-container {
     width: 100%;
   }
 }
+
+/*# sourceMappingURL=home.css.map */
