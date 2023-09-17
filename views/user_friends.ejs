@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="<%= assetPath('css/user_friends.css') %>" />
+<div id="friends" class="userFriendsContainer">
+  <div class="header">Friends</div>
+
+  <div class="wrapperContainer">
+    <% for(u of friends) { %>
+
+    <div class="friendsContainer">
+      <a href="/users/profile/<%=u.to_user._id%>" class="friendsItem">
+        <div class="friendUser">
+          <img
+            class="user-avatar create-post-avatar"
+            src="	http://<%= req_url%>/<%= u.to_user.avatar? u.to_user.avatar: assetPath('images/empty-avatar.png') %>"
+            alt="<%=u.to_user.name %>"
+            onclick="window.location.href='/users/profile/<%=u.to_user._id%>'"
+            loading="lazy"
+          />
+
+          <div class="friendName"><%= u.to_user.name %></div>
+        </div>
+      </a>
+    </div>
+    <% } %>
+  </div>
+</div>

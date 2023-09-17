@@ -43,6 +43,7 @@
 .postAvatar img {
   height: 40px;
   margin-right: 20px;
+  object-fit: cover;
 }
 
 .userNameContainer {
@@ -127,7 +128,6 @@
 /* .heart:hover {
   background-position:right;
 } */
-
 .is_animating {
   animation: heart-burst 0.8s steps(28) 1;
 }
@@ -140,7 +140,6 @@
     background-position: right;
   }
 }
-
 .postActions {
   padding: 5px;
   display: flex;
@@ -262,7 +261,7 @@
 }
 
 .postCommentsItem {
-  background: rgb(79 91 139 / 28%);
+  background: rgba(79, 91, 139, 0.28);
   border-radius: 6px;
   padding: 10px;
   margin-bottom: 14px;

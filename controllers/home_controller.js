@@ -84,6 +84,7 @@ module.exports.home = async function (req, res) {
       posts: posts,
       all_users: users,
       friends: friends,
+      req_url: req.headers.host,
     });
   } catch (error) {
     console.log("error in getting post ", error);

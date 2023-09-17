@@ -30,10 +30,13 @@ module.exports.profile = async function (req, res) {
       friends = true;
     }
 
+    console.log("profileuser", user);
+
     return res.render("profile", {
       title: "Profile",
       profile_user: user,
       friends: friends,
+      req_url: req.headers.host,
     });
   } catch (error) {
     console.log(err);

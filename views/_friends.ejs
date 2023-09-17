@@ -1,28 +1,15 @@
-<!-- <%= u.to_user.name %> -->
 <div class="friendsContainer">
   <a href="/users/profile/<%=u.to_user._id%>" class="friendsItem">
     <div class="friendUser">
-      <!-- <% if(u.avatar){ %>
       <img
         class="user-avatar create-post-avatar"
-        src="<%= u.avatar %>"
-        alt="<%=u.to_user.name %>"
-        onclick="window.location.href='/users/profile/<%=u._id%>'"
-        onerror="this.onerror=null; this.src=`<%= assetPath('images/empty-avatar.png') %>`"
-        loading="lazy"
-      />
-      <% }else{ %> -->
-      <img
-        class="user-avatar create-post-avatar"
-        src="<%= assetPath('images/empty-avatar.png') %>"
+        src="<%= u.to_user.avatar? u.to_user.avatar: assetPath('images/empty-avatar.png') %>"
         alt="<%=u.to_user.name %>"
         onclick="window.location.href='/users/profile/<%=u.to_user._id%>'"
         loading="lazy"
       />
-      <!-- <% } %> -->
-      <!-- <img src="<%= u.avatar %>" alt="img" /> -->
+
       <div class="friendName"><%= u.to_user.name %></div>
     </div>
   </a>
 </div>
-<!-- src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png " -->

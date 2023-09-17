@@ -1,28 +1,21 @@
-<!-- <html>
-    <head>
-        <title>
-            <%= title %>
-        </title>
-    </head>
-    <body> -->
-<!-- including header and footer from another file -->
-<!-- <%- include('_header'); -%> -->
 <link rel="stylesheet" href="<%= assetPath('css/profile.css') %>" />
 
 <!-- if user matches then show form  -->
-<img
-  class="user-avatar create-post-avatar"
-  src="<%= profile_user.avatar %>"
+<!-- class="user-avatar create-post-avatar" -->
+<!-- onclick="window.location.href='/users/profile/<%=post.user._id%>'" -->
+<!-- loading="lazy" -->
+
+<!-- <img
+  src="http://localhost:8000/<%= profile_user.avatar %>"
   alt="<%= profile_user.name %>"
-  onclick="window.location.href='/users/profile/<%=post.user._id%>'"
-  loading="lazy"
-/>
+/> -->
+<!-- http://localhost:8000/uploads/users/avatars/avatar-1694674454890-801194951 -->
 <div class="wrapper">
   <div class="imgContainer">
     <% if(profile_user.avatar){ %>
     <img
       class="user-avatar"
-      src="<%= profile_user.avatar %>"
+      src="http://<%= req_url%>/<%= profile_user.avatar %>"
       data-src="<%= profile_user.avatar %>"
       alt="<%= profile_user.name %>"
       loading="lazy"
@@ -36,11 +29,6 @@
       loading="lazy"
     />
     <% } %>
-    <!-- <img
-      src="/<%= profile_user.avatar%>"
-      alt="<%= profile_user.name %>"
-      width="100"
-    /> -->
   </div>
 
   <div class="user-container">
@@ -61,14 +49,14 @@
         type="text"
         name="name"
         placeholder="Your Name"
-        value=" <% profile_user.name %>"
+        value=" <%= profile_user.name %>"
         required
       />
       <input
         type="email"
         name="email"
         placeholder="Your Email"
-        value="<% profile_user.email %>"
+        value="<%= profile_user.email %>"
         required
       />
 
@@ -76,32 +64,8 @@
       <input type="submit" value="Update" />
     </form>
   </div>
-  <!-- </div> -->
   <% } else { %>
-  <!-- <div class="wrapper">
-  <div class="imgContainer">
-    <% if(profile_user.avatar){ %>
-    <img
-      class="user-avatar"
-      src="<%= profile_user.avatar %>"
-      data-src="<%= profile_user.avatar %>"
-      alt="<%= profile_user.name %>"
-      loading="lazy"
-    />
-    <% }else{ %>
-    <img
-      class="user-avatar"
-      src="<%= assetPath('images/empty-avatar.png') %>"
-      data-src="<%= assetPath('images/empty-avatar.png') %>"
-      alt="<%= profile_user.name %>"
-      loading="lazy"
-    />
-    <% } %>
-  </div>
-  <div class="user-container">
-    <div class="user-name"><%= profile_user.name %></div>
-    <span> <%= profile_user.email %> </span>
-  </div> -->
+
   <div class="btnContainer">
     <% if(user.id != profile_user.id) {%> <% if(friends==false) {%>
     <p id="friend-style">
@@ -117,14 +81,7 @@
     </p>
     <%}%> <%}%>
   </div>
-  <!-- </div> -->
   <% } %>
 
-  <!-- else show only user profile  -->
-
   <script src="/js/toggle_friend.js"></script>
-
-  <!-- <%- include('_footer'); -%>
-    </body>
-</html> -->
 </div>

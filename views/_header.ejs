@@ -16,7 +16,7 @@
             <a href="/users/profile/<%= user.id %>">
               
              
-              <img src="<%= user.avatar? user.avatar: assetPath('images/empty-avatar.png') %>" alt="avatar" />
+              <img src="http://<%= req_url%>/<%= user.avatar? user.avatar: assetPath('images/empty-avatar.png') %>" alt="avatar" />
 
 
 
@@ -63,6 +63,13 @@
         
                </div>
             </li>
+
+            <li>
+              <div class="signOut">
+               <a href="/friends/<%= user.id %>">Friends</a>
+       
+              </div>
+           </li>
                 <% }else{ %>
                 <li>
                 <div class="signIn">

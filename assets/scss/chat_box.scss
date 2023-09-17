@@ -32,6 +32,7 @@
 .chatHeader span {
   font-weight: 700;
 }
+
 .chatHeader span svg {
   width: 22px;
   padding: 8px;
@@ -43,7 +44,7 @@
 }
 
 .chatHeader .svg:active {
-  background-color: #ccc8db3a;
+  background-color: rgba(204, 200, 219, 0.2274509804);
 }
 
 #user-chat-box #chat-messages-list {
@@ -59,12 +60,16 @@
 #user-chat-box #chat-messages-list .other-message {
   text-align: left;
   padding: 5px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 #user-chat-box #chat-messages-list .other-message span {
-  display: inline-block;
+  /* display: inline-block; */
   padding: 12px 15px;
-  background-color: #536c7980;
+  background-color: rgba(83, 108, 121, 0.5019607843);
   border-radius: 10px 10px 10px 0;
 }
 
@@ -76,7 +81,9 @@
   justify-content: flex-end;
   flex-direction: column;
 }
-#user-chat-box #chat-messages-list .self-message sub {
+
+#user-chat-box #chat-messages-list .self-message sub,
+.other-message sub {
   margin-top: 3px;
   font-size: 0.8rem;
   font-weight: 600;
@@ -98,7 +105,7 @@
   align-items: center;
   padding: 7px;
   box-sizing: border-box;
-  background: #536c7980;
+  background: rgba(83, 108, 121, 0.5019607843);
   border-radius: 10px;
   flex-grow: 1;
 }
@@ -125,12 +132,13 @@
   background: rgb(84, 66, 191);
   background: linear-gradient(
     323deg,
-    rgba(84, 66, 191, 1) 0%,
-    rgba(6, 81, 208, 1) 25%,
-    rgba(3, 182, 219, 1) 100%
+    rgb(84, 66, 191) 0%,
+    rgb(6, 81, 208) 25%,
+    rgb(3, 182, 219) 100%
   );
   transition: all ease 0.2s;
 }
+
 #user-chat-box #chat-message-input-container #send-message :active {
   scale: 0.9;
 }
@@ -163,9 +171,9 @@
   /* background: #5a5eb9; */
   background: linear-gradient(
     323deg,
-    rgba(84, 66, 191, 1) 0%,
-    rgba(6, 81, 208, 1) 25%,
-    rgba(3, 182, 219, 1) 100%
+    rgb(84, 66, 191) 0%,
+    rgb(6, 81, 208) 25%,
+    rgb(3, 182, 219) 100%
   );
   width: 70px;
   height: 70px;
@@ -183,3 +191,5 @@
   right: 30px;
   width: 30px;
 }
+
+/*# sourceMappingURL=chat_box.css.map */

@@ -51,7 +51,7 @@ form .textContainer img {
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  /* margin-right: 15px; */
+  object-fit: cover;
 }
 
 form .textContainer textarea {
@@ -252,6 +252,15 @@ form .textContainer textarea::placeholder {
   }
   #post-list-container {
     width: 100%;
+  }
+}
+@media (max-width: 565px) {
+  #feed-post {
+    width: 100%;
+    margin-right: 0;
+  }
+  #user-friends {
+    display: none;
   }
 }
 
