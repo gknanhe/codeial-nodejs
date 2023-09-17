@@ -58,7 +58,7 @@ module.exports.home = async function (req, res) {
       })
       .populate("likes");
 
-    console.log(posts);
+    // console.log(posts);
 
     let friends = await Friendship.find({ from_user: req.user });
     //console.log(friends);
@@ -75,7 +75,7 @@ module.exports.home = async function (req, res) {
     // let comm = await Comment.find({})
     // .sort('-createdAt');
 
-    console.log("friends", friends);
+    // console.log("friends", friends);
 
     let users = await User.find({});
 

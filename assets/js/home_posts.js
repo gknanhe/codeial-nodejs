@@ -5,7 +5,7 @@
 
     newPostForm.submit(function (e) {
       e.preventDefault();
-
+      // console.log("serialize", newPostForm.serialize());
       $.ajax({
         type: "post",
         url: "/posts/create",

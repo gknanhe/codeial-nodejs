@@ -7,7 +7,7 @@ module.exports.userFriends = async function (req, res) {
     for (let i = 0; i < friends.length; i++) {
       await friends[i].populate("to_user");
     }
-    console.log("req url: ", req.headers.host);
+    // console.log("req url: ", req.headers.host);
 
     return res.render("user_friends", {
       title: "Codeal | User Friends",

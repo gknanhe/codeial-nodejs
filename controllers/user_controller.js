@@ -145,6 +145,7 @@ module.exports.create = async function (req, res) {
 
 //sign in and creat a session for user using expess-sessio n and PASSPORT.JS
 module.exports.createSession = function (req, res) {
+  // console.log(req.body);
   //set flash
   req.flash("success", "Logged in Successfully");
   return res.redirect("/");
@@ -178,7 +179,7 @@ module.exports.resetPassword = async function (req, res) {
   let user = await User.findOne({ email: req.body.email });
   //console.log(user);
   let token = await Token.create({ isValid: true, user: user });
-  console.log(token, "token sent");
+  // console.log(token, "token sent");
 
   let job = queue.create("reset", token).save(function (err) {
     if (err) {
@@ -207,7 +208,7 @@ module.exports.changePassword = async function (req, res) {
     // console.log(typeof (userId));
 
     let token = await Token.findByIdAndUpdate(req.params.id, { isValid: true });
-    console.log(token, "token");
+    // console.log(token, "token");
     // let user = await User.findById(token.user);
     // console.log(user,'usercheck');
     res.render("changePassword", {
@@ -236,17 +237,17 @@ module.exports.updatePassword = async function (req, res) {
     // console.log(req.params.id,'params')
     const user = await User.findOne({ _id: req.params.id });
     if (!user) {
-      console.log("not found user ", user);
+      // console.log("not found user ", user);
       res.render("user_sign_up", {
         title: "signUp",
       });
       return;
     } else {
-      console.log("found user ", user);
+      // console.log("found user ", user);
 
       await User.findByIdAndUpdate(user.id, { password: req.body.password });
-      console.log("changedddd******");
-      console.log(user.password);
+      // console.log("changedddd******");
+      // console.log(user.password);
       res.render("user_sign_in", {
         title: "SignIn",
       });

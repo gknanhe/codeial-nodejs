@@ -34,7 +34,7 @@ module.exports.create = async function (req, res) {
       // comment = await comment.populate('user', 'name email',);
       comment = await comment.populate("user", ["name", "email"]);
 
-      console.log(comment);
+      // console.log(comment);
 
       //send mail
       // commentsMailer.newComment(comment);
@@ -46,7 +46,7 @@ module.exports.create = async function (req, res) {
           return;
         }
 
-        console.log("job enqueued", job.id);
+        // console.log("job enqueued", job.id);
       });
 
       if (req.xhr) {

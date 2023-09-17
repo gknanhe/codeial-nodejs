@@ -47,7 +47,7 @@ module.exports.destroy = async function (req, res) {
       //although no need of nested tryCatch bcoz if err occurs next part wont execute
       // try {
       await Comment.deleteMany({ post: req.params.id });
-      console.log(req.params.id, "paramsid post");
+      // console.log(req.params.id, "paramsid post");
       if (req.xhr) {
         return res.status(200).json({
           data: {
