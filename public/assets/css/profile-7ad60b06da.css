@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700|Source+Sans+Pro:300,400,600,700&display=swap");
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #0f3cc9;
+  height: 500px;
+  width: 380px;
+  margin-top: 200px;
+  padding: 10px 7px;
+  border-radius: 8px;
+  box-shadow: rgba(45, 59, 255, 0.315) 0px 10px 15px -3px, rgba(43, 36, 253, 0.177) 0px 4px 6px -2px;
+}
+
+.imgContainer {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.31);
+}
+
+.imgContainer img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-container {
+  font-family: "Source Sans Pro", sans-serif;
+  color: aliceblue;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+  margin: 15px 5px;
+}
+
+.user-container .user-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.user-container span {
+  font-size: 1.1rem;
+}
+
+.formUpdateContainer form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formUpdateContainer form input[type=text],
+.formUpdateContainer form input[type=email] {
+  width: 250px;
+  height: 40px;
+  font-size: 0.9rem;
+  color: white;
+  padding-left: 15px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.787);
+  background: transparent;
+  outline: none;
+}
+
+::placeholder {
+  color: rgba(255, 255, 255, 0.787);
+}
+
+.formUpdateContainer form input[type=file] {
+  width: 250;
+  height: 40px;
+}
+
+.formUpdateContainer form input[type=file] {
+  position: relative;
+}
+
+.formUpdateContainer form input[type=file]::file-selector-button {
+  width: 136px;
+  color: transparent;
+}
+
+/* Faked label styles and icon */
+.formUpdateContainer form input[type=file]::before {
+  position: absolute;
+  pointer-events: none;
+  top: 10px;
+  left: 16px;
+  height: 20px;
+  width: 20px;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230964B0'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
+}
+
+.formUpdateContainer form input[type=file]::after {
+  position: absolute;
+  pointer-events: none;
+  top: 11px;
+  left: 40px;
+  color: #e8f5ff;
+  content: "Upload File";
+}
+
+/* ------- From Step 1 ------- */
+/* file upload button */
+.formUpdateContainer form input[type=file]::file-selector-button {
+  border-radius: 4px;
+  padding: 0 16px;
+  height: 40px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid rgba(227, 234, 255, 0.658);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+  margin-right: 16px;
+  transition: background-color 200ms;
+}
+
+/* file upload button hover state */
+.formUpdateContainer form input[type=file]::file-selector-button:hover {
+  background-color: #5141ff;
+}
+
+/* file upload button active state */
+.formUpdateContainer form input[type=file]::file-selector-button:active {
+  background-color: #5141ff;
+}
+
+.formUpdateContainer form input[type=submit] {
+  padding: 10px 18px;
+  color: #245bff;
+  background-color: #bdb7ff;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+}
+
+.btnContainer p a {
+  text-decoration: none;
+  padding: 10px 18px;
+  color: #245bff;
+  background-color: #c7c2fe;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+
+
+/*# sourceMappingURL=profile.css.map */

@@ -4,7 +4,8 @@ const sass = require("gulp-sass")(require("sass"));
 const cssnano = require("gulp-cssnano");
 const rev = require("gulp-rev");
 const uglify = require("gulp-uglify-es").default;
-const imagemin = require("gulp-imagemin");
+// const imagemin = require("gulp-imagemin");
+const { default: imagemin } = require("gulp-imagemin"); // Use import() for imagemin
 const del = require("del");
 
 // npm install gulp-imagemin@7.1.0 gulp-uglify-es@3.0.0 del@6.1.1

@@ -14,7 +14,7 @@ class ChatEngine {
     let self = this;
 
     this.socket.on("connect", function () {
-      console.log("connection established using sockets....!");
+      // console.log("connection established using sockets....!");
 
       self.socket.emit("join_room", {
         user_email: self.userEmail,
@@ -22,7 +22,7 @@ class ChatEngine {
       });
 
       self.socket.on("user_joined", function (data) {
-        console.log("a user joined!", data);
+        // console.log("a user joined!", data);
       });
     });
 

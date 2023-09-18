@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700|Source+Sans+Pro:300,400,600,700&display=swap");
+body {
+  margin: 0;
+  /* text-align: center; */
+  overflow: auto;
+  font-family: "Source Sans Pro", sans-serif;
+  /* height: 100%; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  /* gap: 50px; */
+  background: #24273b;
+  color: aliceblue;
+  min-height: 100vh;
+  width: 100wv;
+}
+
+.headerDiv {
+  height: 80px;
+}
+
+.mainLayoutDiv {
+  width: 100vw;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  margin: 5px 15px;
+  padding: 5px 15px;
+}
+
+.footerDiv {
+  height: 80px;
+  width: 100vw;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  background: #24273b;
+}
+
+
+
+/*# sourceMappingURL=layout.css.map */

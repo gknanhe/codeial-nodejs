@@ -1175,3 +1175,11 @@
 [0mGET / [36m304[0m 179.506 ms - -[0m
 [0mGET / [36m304[0m 191.925 ms - -[0m
 [0mGET / [36m304[0m 86.656 ms - -[0m
+[0mGET / [36m304[0m 113.181 ms - -[0m
+[0mGET / [36m304[0m 80.233 ms - -[0m
+[0mGET / [36m304[0m 116.111 ms - -[0m
+::1 - - [18/Sep/2023:04:01:57 +0000] "GET / HTTP/1.1" 200 8098 "http://localhost:8000/users/profile/6505b1cffa3fe8d21ad11df5" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+::1 - - [18/Sep/2023:04:02:00 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:8000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+::1 - - [18/Sep/2023:04:02:13 +0000] "GET /users/sign-in HTTP/1.1" 200 6894 "http://localhost:8000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+::1 - - [18/Sep/2023:04:02:22 +0000] "POST /users/create-session HTTP/1.1" 302 72 "http://localhost:8000/users/sign-in" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"
+::1 - - [18/Sep/2023:04:02:22 +0000] "GET /users/sign-in HTTP/1.1" 200 7116 "http://localhost:8000/users/sign-in" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36"

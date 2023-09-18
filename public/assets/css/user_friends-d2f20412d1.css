@@ -1,0 +1,111 @@
+/* Friends  CSS */
+.userFriendsContainer {
+  min-height: 100vh;
+  width: 100%;
+  margin-top: 60px;
+  background: #151728;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.friendslist {
+  /* min-width: 290px; */
+  /* height: 100vh; */
+  background: #151728;
+  margin-top: 20px;
+  flex-grow: 0.2;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  /* border: 1px solid #272a3a; */
+  border-radius: 4px;
+  font-family: "DM Sans", sans-serif;
+  /* overflow-y: scroll; */
+  width: 100%;
+}
+
+.header {
+  border-bottom: 1px solid #272a3a;
+  padding: 20px;
+  font-family: "DM Sans", sans-serif;
+  color: #5c5e6e;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.wrapperContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100%;
+  width: 100%;
+}
+
+.peopleContainer {
+  display: none;
+  margin: 8px;
+  width: 95%;
+  box-sizing: border-box;
+  padding-left: 15px;
+}
+
+.peopleContainer:hover,
+.friendsContainer :hover {
+  border-radius: 6px;
+  background-color: rgba(79, 91, 139, 0.266);
+}
+
+.peopleContainer a {
+  text-decoration: none;
+  color: #ccc8db;
+}
+
+.friendsContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  width: 95%;
+  box-sizing: border-box;
+  /* padding-left: 15px; */
+  margin: 3px;
+}
+
+.friendsContainer a {
+  text-decoration: none;
+  color: #ccc8db;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.friendsContainer .friendsItem {
+  padding: 10px;
+  width: 100%;
+}
+
+.friendUser {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  /* margin-top: 18px; */
+}
+
+.friendUser img {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  margin-right: 15px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.friendName {
+  text-overflow: ellipsis; /* Display an ellipsis (...) when the text overflows the container */
+}
+
+/*# sourceMappingURL=user_friends.css.map */
