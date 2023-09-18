@@ -1,3 +1,23 @@
+// const mongoose = require('mongoose');
+// const env = require('../config/environment');
+// mongoose.connect(`mongodb://localhost/${env.db}`);
+
+// const db = mongoose.connection;
+
+// db.on('error', console.error.bind('error in connecting Database'));
+
+// db.once('open', function(){
+//     console.log("Connected to Database:: MongoDB");
+
+// })
+
+// module.exports = db;
+const mongoose = require("mongoose");
+// mongoose.connect('mongodb://0.0.0.0/employeReviewSystem');
+const DB =
+  "mongodb+srv://cse18gknanhejd:8605587220@cluster0.habmus6.mongodb.net/?retryWrites=true&w=majority";
+
+// These set of line can be written in async await fashion, but I have followed the documentation.
 mongoose
   .connect(DB)
   .then(() => {
