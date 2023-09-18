@@ -8,6 +8,10 @@
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod_start": "CODEIAL_ENVIRONMENT=production nodemon index.js"
+  }
+  ,
+  "engines": {
+    "node": "14.20.1"
   },
   "keywords": [
     "social"
