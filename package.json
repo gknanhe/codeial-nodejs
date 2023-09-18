@@ -8,10 +8,6 @@
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod_start": "CODEIAL_ENVIRONMENT=production nodemon index.js"
-  }
-  ,
-  "engines": {
-    "node": "14.20.1"
   },
   "keywords": [
     "social"
@@ -37,16 +33,14 @@
     "gulp-uglify-es": "^3.0.0",
     "jsonwebtoken": "^9.0.0",
     "kue": "^0.11.6",
-    "mongoose": "^7.5.2",
+    "mongoose": "^7.0.4",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "node":"^14.20.1",
     "node-fetch": "^2.6.1",
     "node-sass": "^9.0.0",
     "node-sass-middleware": "^1.0.1",
     "nodemailer": "^6.9.1",
     "nodemailer-smtp-transport": "^2.7.4",
-    "nodemon":"^2.0.22",
     "passport": "^0.6.0",
     "passport-google-oauth": "^2.0.0",
     "passport-jwt": "^4.0.1",
