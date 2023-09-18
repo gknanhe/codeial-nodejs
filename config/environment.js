@@ -39,9 +39,8 @@ const development = {
     },
   },
 
-  google_client_id:
-    "986366199498-kohkntveac7hfl9vtbre9d4lc5hf9lhi.apps.googleusercontent.com",
-  google_client_secret: "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",
+  google_client_id: process.env.CODEIAL_GOOGLE_CLIENT_ID,
+  google_client_secret: process.env.CODEIAL_GOOGLE_CLIENT_SECRET,
   google_call_back_url: "http://localhost:8000/users/auth/google/callback",
   jwt_secret: "codeial",
   morgan: {
