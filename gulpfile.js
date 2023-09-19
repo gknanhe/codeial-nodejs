@@ -4,8 +4,12 @@ const sass = require("gulp-sass")(require("sass"));
 const cssnano = require("gulp-cssnano");
 const rev = require("gulp-rev");
 const uglify = require("gulp-uglify-es").default;
-// const imagemin = require("gulp-imagemin");
-const { default: imagemin } = require("gulp-imagemin"); // Use import() for imagemin
+const imagemin = require("gulp-imagemin");
+const pngquant = require('imagemin-pngquant');
+
+const optipng = require('imagemin-optipng');
+
+// const { default: imagemin } = require("gulp-imagemin"); // Use import() for imagemin
 const del = require("del");
 
 // npm install gulp-imagemin@7.1.0 gulp-uglify-es@3.0.0 del@6.1.1
@@ -56,7 +60,10 @@ gulp.task("images", function (done) {
   console.log("compressing images...");
   gulp
     .src("./assets/**/*.+(png|jpg|gif|svg|jpeg|ico)")
-    .pipe(imagemin())
+    .pipe(imagemin([
+      optipng(),
+      pngquant()
+    ]))
     .pipe(rev())
     .pipe(gulp.dest("./public/assets"))
     .pipe(
