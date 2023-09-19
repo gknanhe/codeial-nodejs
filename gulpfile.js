@@ -5,7 +5,7 @@ const cssnano = require("gulp-cssnano");
 const rev = require("gulp-rev");
 const uglify = require("gulp-uglify-es").default;
 const imagemin = require("gulp-imagemin");
-const pngquant = require('imagemin-pngquant');
+// const pngquant = require('imagemin-pngquant');
 
 const optipng = require('imagemin-optipng');
 
@@ -61,8 +61,8 @@ gulp.task("images", function (done) {
   gulp
     .src("./assets/**/*.+(png|jpg|gif|svg|jpeg|ico)")
     .pipe(imagemin([
-      optipng(),
-      pngquant()
+      optipng()
+     
     ]))
     .pipe(rev())
     .pipe(gulp.dest("./public/assets"))
